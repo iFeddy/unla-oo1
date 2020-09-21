@@ -17,8 +17,6 @@ public class Articulo {
 		this.codBarras = codBarras;
 		this.precio = precio;
 	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -55,7 +53,7 @@ public class Articulo {
 	@Override
 	public String toString() {
 		return "ID Articulo : " + id + ", Nombre : " + nombre + ", Codigo de Barras : "
-				+ codBarras + ", Precio : " + precio + ", ";
+				+ codBarras + ", Precio : " + precio + "\n ";
 	}
 	
 	public boolean isValidBarCodeEAN(String codBarras) {

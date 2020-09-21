@@ -32,6 +32,10 @@ public class Comercio {
 		this.lstCarrito = new ArrayList<Carrito>();
 	}
 
+	public Comercio(){
+		this.lstArticulo = new ArrayList<Articulo>();
+	}
+	
 	public String getNombreComercio() {
 		return nombreComercio;
 	}
@@ -125,7 +129,7 @@ public class Comercio {
 	}
 	
 // ARTICULOS 
-	// TRAER ARTICULOS POR ID
+	// TRAER ARTICULOS POR CODIGO DE BARRAS
 	public Articulo traerArticulo(int id) {
 		Articulo articulo = null;
 		int i = 0;
@@ -139,6 +143,21 @@ public class Comercio {
 		}
 
 		return articulo;
+	}
+	
+	// TRAER ARTICULO POR STRING EN EL NOMBRE
+	public Articulo traerArticulocodBarras(String codBarras) {		
+		Articulo articuloPorcodBarras = null;			
+		int i = 0;
+		while (articuloPorcodBarras == null && i < lstArticulo.size()) {
+			Articulo art = lstArticulo.get(i);
+			if (art.getCodBarras().equals(codBarras)) {
+				articuloPorcodBarras = art;
+				System.out.println("Codigo de Barras Articulo : " + art.getCodBarras());
+			}
+			i++;
+		}		
+		return articuloPorcodBarras;
 	}
 	
 	// TRAER ARTICULO POR STRING EN EL NOMBRE
@@ -176,10 +195,10 @@ public class Comercio {
 		int id= 0;
 		Articulo articulo1 = new Articulo();		
 		if(articulo1.isValidBarCodeEAN(codBarras) == false){
-			throw new Exception("Codigo de Barras no Valido! ");
+			throw new Exception("Codigo de Barras de algun Articulo es no Valido! ");
 		}
-		if (this.traerArticuloNombre(nombre)!= null) {
-			throw new Exception("Articulo existente con el mismo nombre! ");
+		if(this.traerArticulocodBarras(codBarras)!= null){
+			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
 		}
 		if (lstArticulo == null || lstArticulo.size() == 0) {
 			id = 1;
@@ -211,6 +230,22 @@ public class Comercio {
 			System.out.println("Modificando nombre del Articulo por : " + nombre);
 			return modificada;
 		}
+
 	
+// CARRITOS
+	// TRAER CARRITO POR ID 
+	public Carrito traerCarrito(int id){
+		Carrito carrito = null;
+		int i = 0;
+		while(carrito == null && i < lstCarrito.size()){
+			Carrito c = lstCarrito.get(i); 
+			if(c.getId() == id){
+				carrito = c;
+				System.out.println("Carrito buscado con ID..." + carrito.getId());				
+			}
+			i ++ ;
+		}		
+		return carrito;
+	}
 
 }

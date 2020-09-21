@@ -77,5 +77,63 @@ public class Carrito {
 				+ ", ItemCarrito : " + lstItemCarrito + ", Entrega : " + entrega
 				+ ", ";
 	}
+	
+// ITEM CARRITO
+    // AGREGAR ITEM
+ 	public boolean agregarItem(Articulo articulo, int cantidad)throws Exception{
+ 		ItemCarrito itemcarrito = null;
+		boolean itemAgregado = false;
+		int i = 0;
+		while (itemcarrito == null && i < lstItemCarrito.size()) {
+			ItemCarrito item = lstItemCarrito.get(i);
+			if (articulo.getId() == lstItemCarrito.get(i).getArticulo().getId()) {
+				itemcarrito = item;
+				itemAgregado = true;
+				int nuevaCantidad = lstItemCarrito.get(i).getCantidad()+cantidad;
+				lstItemCarrito.get(i).setCantidad(nuevaCantidad);
+			}
+			i++;			
+		}
+		if (!itemAgregado) {
+			ItemCarrito p = new ItemCarrito(articulo,cantidad);				
+			lstItemCarrito.add(p);			
+			}		
+		return itemAgregado;		
+	}
+ 	
+ 	// MMOSTRAR ITEM
+ 	public List<ItemCarrito> mostrarItem(Carrito carrito){
+ 		List<ItemCarrito> mostrar = new ArrayList<ItemCarrito>();
+ 		for(ItemCarrito p : carrito.getLstItemCarrito()){
+ 			mostrar.add(p);
+ 		}
+ 		return mostrar;
+ 	}
+ 	
+ 	// ELIMINAR ITEM
+ 	public boolean eliminarItem(Articulo articulo, int cantidad)throws Exception{
+ 		ItemCarrito itemcarrito = null;
+		boolean itemEliminado = false;
+		int i = 0;
+		while (itemcarrito == null && i < lstItemCarrito.size()) {
+			ItemCarrito item = lstItemCarrito.get(i);
+			if (articulo.getId() == lstItemCarrito.get(i).getArticulo().getId()) {
+				itemcarrito = item;
+				itemEliminado = true;
+				if(lstItemCarrito.get(i).getCantidad()== cantidad){
+					int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;
+					lstItemCarrito.get(i).setCantidad(nuevaCantidad);
+					lstItemCarrito.remove(i);
+					System.out.println("Se elimino el item del carrito , ya que la cantidad a eliminar es la misma");
+				}	
+			}
+		}
+			i++;
+			if (!itemEliminado) {
+				throw new Exception("Item no encontrado ni eliminado");
+				}
+			return itemEliminado;
+		}
 
 }
+
