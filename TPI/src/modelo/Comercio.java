@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Comercio {
 	private String nombreComercio;
-	private long cuit;
+	private String cuit;
 	private double costoFijo;
 	private double costoPorKm;
 	private int diasDescuento;
@@ -15,7 +15,7 @@ public class Comercio {
 	private List<Articulo>lstArticulo;
 	private List<Carrito>lstCarrito;
 	
-	public Comercio(String nombreComercio, long cuit, double costoFijo,
+	public Comercio(String nombreComercio, String cuit, double costoFijo,
 			double costoPorKm, int diasDescuento, int porcentajeDescuentoDia,
 			int porcentajeDescuentoEfectivo, List<DiaRetiro> lstDiaRetiro,
 			List<Articulo> lstArticulo, List<Carrito> lstCarrito) {
@@ -44,12 +44,16 @@ public class Comercio {
 		this.nombreComercio = nombreComercio;
 	}
 
-	public long getCuit() {
+	public String getCuit() {
 		return cuit;
 	}
 
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
+	public void setCuit(String cuit) throws Exception {
+		if(Funciones.validarCUIT(cuit)){
+			this.cuit = cuit;
+		}else{
+			throw new Exception("Error: El CUIT no es correcto");
+		}		
 	}
 
 	public double getCostoFijo() {

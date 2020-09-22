@@ -6,12 +6,11 @@ public class Cliente extends Actor{
 	private long dni;
 	private char sexo;
 	
-	public Cliente(int id, Contacto contacto, String apellido, String nombre,
-			long dni, char sexo) {
+	public Cliente(int id, Contacto contacto, String apellido, String nombre, long dni, char sexo) throws Exception {
 		super(id, contacto);
 		this.apellido = apellido;
 		this.nombre = nombre;
-		this.dni = dni;
+		this.setDni(dni);
 		this.sexo = sexo;
 	}
 
@@ -35,8 +34,12 @@ public class Cliente extends Actor{
 		return dni;
 	}
 
-	public void setDni(long dni) {
-		this.dni = dni;
+	public void setDni(long dni) throws Exception {
+		if(Funciones.validarDNI(dni)){
+			this.dni = dni;
+		}else{
+			throw new Exception("Error: El DNI no es correcto");
+		}		
 	}
 
 	public char getSexo() {

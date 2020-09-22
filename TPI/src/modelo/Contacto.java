@@ -2,7 +2,7 @@ package modelo;
 
 public class Contacto {
 	private String email;
-	private String celular;
+	private String celular; //String???
 	private Ubicacion ubicacion;
 	
 	public Contacto(String email, String celular, Ubicacion ubicacion) {
