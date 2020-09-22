@@ -18,10 +18,10 @@ public class Comercio {
 	public Comercio(String nombreComercio, String cuit, double costoFijo,
 			double costoPorKm, int diasDescuento, int porcentajeDescuentoDia,
 			int porcentajeDescuentoEfectivo, List<DiaRetiro> lstDiaRetiro,
-			List<Articulo> lstArticulo, List<Carrito> lstCarrito) {
+			List<Articulo> lstArticulo, List<Carrito> lstCarrito) throws Exception {
 		super();
 		this.nombreComercio = nombreComercio;
-		this.cuit = cuit;
+		this.setCuit(cuit);
 		this.costoFijo = costoFijo;
 		this.costoPorKm = costoPorKm;
 		this.diasDescuento = diasDescuento;
