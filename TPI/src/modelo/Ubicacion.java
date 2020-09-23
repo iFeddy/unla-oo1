@@ -4,17 +4,20 @@ public class Ubicacion {
 	private double latitud;
 	private double longitud;
 	
-	public Ubicacion(double latitud, double longitud) {
+	public Ubicacion(double latitud, double longitud)throws Exception {
 		super();
-		this.latitud = latitud;
-		this.longitud = longitud;
+		this.setLatitud(latitud);
+		this.setLongitud(longitud);
 	}
 
 	public double getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(double latitud) {
+	public void setLatitud(double latitud)throws Exception {
+		if(latitud < -90 || latitud > 90){
+			throw new Exception("Error: Objeto Ubicacion inválido, Latitud debe estar entre -90 y 90 grados");
+		}
 		this.latitud = latitud;
 	}
 
@@ -22,15 +25,20 @@ public class Ubicacion {
 		return longitud;
 	}
 
-	public void setLongitud(double longitud) {
+	public void setLongitud(double longitud) throws Exception{
+		if(longitud < -180 || longitud > 180){
+			throw new Exception("Error: Objeto Ubicacion inválido, Longitud debe estar entre -180 y 180 grados");
+		}
 		this.longitud = longitud;
 	}
 
 	@Override
 	public String toString() {
-		return "Latitud : " + latitud + ", Longitud : " + longitud + ", ";
+		return "Latitud : " + latitud + ", Longitud : " + longitud + "";
 	}
 	
-	
+	public Ubicacion traerUbicacion(){
+		return this;
+	}
 
 }

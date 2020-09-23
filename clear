@@ -1,0 +1,53 @@
+[33mcommit 4b8a1b1920836c627b4a097ad04a5b9789c271b9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Diego A. Sejas <dsejas2015@gmail.com>
+Date:   Mon Sep 21 20:44:53 2020 -0300
+
+    Articulos,ItemCarrito y Test
+
+[33mcommit 9d9c774a5d41b18448010fcffd818e7511006447[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Sun Sep 20 14:36:50 2020 -0300
+
+    Eliminado Binarios de Git
+
+[33mcommit 26e0d0d1b43bfc8f8d8ece8adc9c360083cfcfa4[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Sun Sep 20 14:32:08 2020 -0300
+
+    Movido GitIgnore a Raiz
+
+[33mcommit 76dfe30a3600d77c693b49885a11853f7fa1a263[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Sun Sep 20 14:24:43 2020 -0300
+
+    Git Ignore BIN/
+
+[33mcommit 3ec039aafa1be2e6a07446689732404ee314a550[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Sun Sep 20 14:22:11 2020 -0300
+
+    Cambios JAVASE-11
+
+[33mcommit 39fd440177a9926f6ff2fdf6c1fcd50aaf577eca[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Sat Sep 19 19:05:36 2020 -0300
+
+    Cambios Diego
+
+[33mcommit a20591df306858f6432426a172e3ee37e89c2ee4[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Wed Sep 16 14:02:29 2020 -0300
+
+    Agregada Planilla de Informe
+
+[33mcommit 37cc8aa3a9ec85af37651bd1c38425edf1c921db[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Wed Sep 16 13:59:13 2020 -0300
+
+    Agregado Link
+
+[33mcommit 211bfd3558b26eb8f1c30d3af26f8e479ccb3bbb[m
+Author: Feddy <feddy_7990@hotmail.com>
+Date:   Wed Sep 16 13:55:34 2020 -0300
+
+    first commit
