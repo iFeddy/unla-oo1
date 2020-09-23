@@ -24,13 +24,47 @@ public class TestCliente {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		Ubicacion u = new Ubicacion(20,30);
-		Contacto c = new Contacto("email@hotmail.com", "+5491122334455", u);
-		Cliente cl = new Cliente(0, c, "Perez", "Federico", 30123456, 'M');
-		System.out.println(cl);
-		System.out.println(c);
+		/*CONTACTO
+		  Escenario 1 , TRAYENDO CONTACTO */
+		try {
+			Ubicacion ubicacion = new Ubicacion(30,20);
+			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
+			System.out.println(contacto);
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
 		
+		/*CONTACTO
+		  Escenario 2 , TRAYENDO CONTACTO , validando direccion de email */
+		try {
+			Ubicacion ubicacion = new Ubicacion(30,20);
+			Contacto contacto = new Contacto("email@gmail", "+5491122334455", ubicacion);
+			System.out.println(contacto);
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
 		
+		/*CLIENTE
+		  Escenario 1 , TRAYENDO CLIENTE */
+		try {
+			Ubicacion ubicacion = new Ubicacion(30,20);
+			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
+			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 30123456, 'M');
+			System.out.println(cliente);			
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
+		/*CLIENTE
+		  Escenario 2 , TRAYENDO CLIENTE , validando DNI */
+		try {
+			Ubicacion ubicacion = new Ubicacion(30,20);
+			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
+			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 301234567, 'M');
+			System.out.println(cliente);			
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
 		
+			
 	}
 }
