@@ -35,7 +35,7 @@ public class Cliente extends Actor{
 	}
 
 	public void setDni(long dni) throws Exception {
-		if(Funciones.validarDNI(dni)){
+		if(this.validarIdentificadorUnico(dni)){
 			this.dni = dni;
 		}else{
 			throw new Exception("Error: El DNI no es correcto");
@@ -49,6 +49,16 @@ public class Cliente extends Actor{
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
+
+	private boolean validarIdentificadorUnico(long dni){
+        int length = String.valueOf(dni).length();
+        //System.out.println(length);
+		if(length == 8 || length == 7){
+			return true;
+		}else{
+            return false;
+        }        
+    }   
 
 	@Override
 	public String toString() {

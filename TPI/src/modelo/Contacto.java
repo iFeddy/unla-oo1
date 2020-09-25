@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Contacto {
 	private String email;
 	private String celular; //String???
@@ -16,8 +19,12 @@ public class Contacto {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws Exception {
+		if(this.validarEmail(email)){
+			this.email = email;
+		}else{
+			throw new Exception("Error: El EMAIL no es correcto");
+		}		
 	}
 
 	public String getCelular() {
@@ -36,6 +43,19 @@ public class Contacto {
 		this.ubicacion = ubicacion;
 	}
 
+	private boolean validarEmail(String email){
+    	// Patr�n para validar el email
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(email);
+
+        if (mather.find() == true) {
+            return true;
+        } else {
+            return false;
+        }
+	} 
+	
 	@Override
 	public String toString() {
 		return "Email : " + email + ", Tel. Celular : " + celular
