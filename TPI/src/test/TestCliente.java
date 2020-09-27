@@ -10,8 +10,9 @@ public class TestCliente {
 		/*UBICACION 
 		  Escenario 1 , TREYENDO UBICACION */ 
 		try {
+			System.out.println("UBICACION: ");
 			Ubicacion u = new Ubicacion(30,20);
-			System.out.println("Mi ubicacion es : " + u.traerUbicacion());			
+			System.out.println("Ubicacion ingresada : " + u.traerUbicacion());			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}		
@@ -27,6 +28,8 @@ public class TestCliente {
 		/*CONTACTO
 		  Escenario 1 , TRAYENDO CONTACTO */
 		try {
+			System.out.println("");
+			System.out.println("CONTACTO : ");
 			Ubicacion ubicacion = new Ubicacion(30,20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			System.out.println(contacto);
@@ -47,6 +50,8 @@ public class TestCliente {
 		/*CLIENTE
 		  Escenario 1 , TRAYENDO CLIENTE */
 		try {
+			System.out.println("");
+			System.out.println("CLIENTE : ");
 			Ubicacion ubicacion = new Ubicacion(30,20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 30123456, 'M');
@@ -63,8 +68,6 @@ public class TestCliente {
 			System.out.println(cliente);			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
-		}
-		
-			
+		}					
 	}
 }

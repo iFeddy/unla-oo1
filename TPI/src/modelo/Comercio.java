@@ -1,11 +1,13 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Comercio {
 	private String nombreComercio;
-	private String cuit;
+	private long cuit;
 	private double costoFijo;
 	private double costoPorKm;
 	private int diasDescuento;
@@ -15,7 +17,7 @@ public class Comercio {
 	private List<Articulo>lstArticulo;
 	private List<Carrito>lstCarrito;
 	
-	public Comercio(String nombreComercio, String cuit, double costoFijo,
+	public Comercio(String nombreComercio, long cuit, double costoFijo,
 			double costoPorKm, int diasDescuento, int porcentajeDescuentoDia,
 			int porcentajeDescuentoEfectivo, List<DiaRetiro> lstDiaRetiro,
 			List<Articulo> lstArticulo, List<Carrito> lstCarrito) throws Exception {
@@ -44,12 +46,12 @@ public class Comercio {
 		this.nombreComercio = nombreComercio;
 	}
 
-	public String getCuit() {
+	public long getCuit() {
 		return cuit;
 	}
 
-	public void setCuit(String cuit) throws Exception {
-		if(Funciones.validarCUIT(cuit)){
+	public void setCuit(long cuit) throws Exception {
+		if(this.validarIdentificadorUnico(cuit)){
 			this.cuit = cuit;
 		}else{
 			throw new Exception("Error: El CUIT no es correcto");
@@ -120,16 +122,42 @@ public class Comercio {
 		this.lstCarrito = lstCarrito;
 	}
 
+	private boolean validarIdentificadorUnico(long cuit_long){
+        String cuit = Long.toString(cuit_long);           
+        cuit = cuit.replaceAll("[^\\d]", "");        
+        if (cuit.length() != 11){
+            return false;
+        }        
+        String[] cuitArray = cuit.split("");
+        Integer[] serie = {5, 4, 3, 2, 7, 6, 5, 4, 3, 2};
+
+        Integer aux = 0;
+        //Recorremos las matrices de forma simultanea, sumando los productos de la serie por el número en la misma posición
+        for (int i=0; i<10; i++){
+            aux += Integer.valueOf(cuitArray[i]) * serie[i];
+        }
+        //Hacemos como se especifica: 11 menos el resto de la división de la suma de productos anterior por 11
+        aux = 11 - (aux % 11);
+        //Si el resultado anterior es 11 el código es 0
+        if (aux == 11){
+            aux = 0;
+        //o si el resultado anterior es 10 el código es 9
+        } else if (aux == 10){
+            aux = 9;
+        }
+        return Objects.equals(Integer.valueOf(cuitArray[10]), aux);
+    }
+
 	@Override
 	public String toString() {
-		return "Comercio [nombreComercio=" + nombreComercio + ", cuit=" + cuit
-				+ ", costoFijo=" + costoFijo + ", costoPorKm=" + costoPorKm
-				+ ", diasDescuento=" + diasDescuento
-				+ ", porcentajeDescuentoDia=" + porcentajeDescuentoDia
-				+ ", porcentajeDescuentoEfectivo="
-				+ porcentajeDescuentoEfectivo + ", lstDiaRetiro="
-				+ lstDiaRetiro + ", lstArticulo=" + lstArticulo
-				+ ", lstCarrito=" + lstCarrito + "]";
+		return "Comercio : " + nombreComercio + ", CUIT : " + cuit
+				+ ", Costo Fijo : " + costoFijo + ", Costo PorKm : " + costoPorKm
+				+ ", Dia de Descuento : " + diasDescuento
+				+ ", % Descuento Dia : " + porcentajeDescuentoDia
+				+ ", % Descuento Efectivo :"
+				+ porcentajeDescuentoEfectivo + ", \nDia Retiro : "
+				+ lstDiaRetiro + ", \nArticulos : " + lstArticulo
+				+ ", \nCarritos : " + lstCarrito + ", ";
 	}
 	
 // ARTICULOS 
@@ -141,7 +169,7 @@ public class Comercio {
 			Articulo art = lstArticulo.get(i);
 			if (art.getId() == id) {
 				articulo = art;
-				System.out.println("Trayendo Articulo... con ID : " + art.getId() + "," + art.getNombre());
+				System.out.println("Articulo ID : " + art.getId() + "," + art.getNombre());
 			}
 			i++;
 		}
@@ -244,12 +272,24 @@ public class Comercio {
 		while(carrito == null && i < lstCarrito.size()){
 			Carrito c = lstCarrito.get(i); 
 			if(c.getId() == id){
-				carrito = c;
-				System.out.println("Carrito buscado con ID..." + carrito.getId());				
+				carrito = c;						
 			}
 			i ++ ;
 		}		
 		return carrito;
 	}
 
+	// AGREGAR CARRITO
+	public boolean agregarCarrito(int id ,LocalDate fecha, boolean cerrado,double descuento ,Cliente cliente , List<ItemCarrito> lstItemCarrito,Entrega entrega)  throws Exception{
+		Entrega entrega1 = null ;
+		if (this.traerCarrito(id) != null) {
+			throw new Exception("Carrito existente! ");
+		}
+		if (lstCarrito == null || lstCarrito.size() == 0) {
+			id = 1;
+		} else {
+			id = (lstCarrito.size()) + 1;
+		}
+		return lstCarrito.add(new Carrito(id, fecha,cerrado,descuento,cliente,lstItemCarrito,entrega1));
+	}
 }

@@ -72,9 +72,9 @@ public class Carrito {
 	}
 	@Override
 	public String toString() {
-		return "Carrito ID : " + id + ", Fecha : " + fecha + ", Estado Cerrado : "
-				+ cerrado + ", Descuento : " + descuento + ", Cliente : " + cliente
-				+ ", ItemCarrito : " + lstItemCarrito + ", Entrega : " + entrega
+		return "Carrito ID : " + id + ", Fecha : " + fecha + ", Cerrado : "
+				+ cerrado + ", Descuento : " + descuento + ", \nCliente : " + cliente
+				+ ", \nItemCarrito : \n" + lstItemCarrito + ", \nEntrega : " + entrega
 				+ ", ";
 	}
 	
@@ -124,7 +124,7 @@ public class Carrito {
 					int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;
 					lstItemCarrito.get(i).setCantidad(nuevaCantidad);
 					lstItemCarrito.remove(i);
-					System.out.println("Se elimino el item del carrito , ya que la cantidad a eliminar es la misma");
+					System.out.println("\nItem del carrito eliminado , ya que la cantidad a eliminar es la misma");
 				}	
 			}
 		}
