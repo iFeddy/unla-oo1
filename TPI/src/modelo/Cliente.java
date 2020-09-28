@@ -50,8 +50,8 @@ public class Cliente extends Actor{
 		this.sexo = sexo;
 	}
 
-	private boolean validarIdentificadorUnico(long dni){
-        int length = String.valueOf(dni).length();
+	public boolean validarIdentificadorUnico(long identificador){
+        int length = String.valueOf(identificador).length();
         //System.out.println(length);
 		if(length == 8 || length == 7){
 			return true;

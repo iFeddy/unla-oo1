@@ -53,7 +53,7 @@ public class Articulo {
 	@Override
 	public String toString() {
 		return "ID Articulo : " + id + ", Nombre : " + nombre + ", Codigo de Barras : "
-				+ codBarras + ", Precio : " + precio + "\n ";
+				+ codBarras + ", Precio : " + precio + "\n";
 	}
 	
 	public boolean isValidBarCodeEAN(String codBarras) {

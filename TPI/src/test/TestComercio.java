@@ -13,7 +13,8 @@ public class TestComercio {
     	
     	try {
     		System.out.println("COMERCIO ");
-    		Comercio almacenGranate = new Comercio("Almacen Granate", 20353242343L, 20, 10, 3,10, 5, null, null, null);
+    		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5, null, null, null);
+    		
     		System.out.println(almacenGranate);    		
     		System.out.println("");
     		System.out.println("LISTA ARTICULOS : ");
@@ -31,10 +32,11 @@ public class TestComercio {
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),1);
-			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);
-						
-    		almacenGranate.agregarCarrito(1, LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
-    		System.out.println(carrito1.mostrarItem(carrito1));
+			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);			
+			System.out.println(carrito1.mostrarItem(carrito1));
+			
+			almacenGranate.agregarCarrito(1, LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
+    		//System.out.println(carrito1.mostrarItem(carrito1));
     		System.out.println("");
     		System.out.println("CARRITO : ");
     		System.out.println(almacenGranate.traerCarrito(1));

@@ -28,10 +28,8 @@ public class ItemCarrito {
 
 	@Override
 	public String toString() {
-		return "" + articulo + ", Cantidad : " + cantidad + "";
+		return "" + articulo + ", Cantidad : " + cantidad + "\n";
 	}
 	
 	
-	
-
 }

@@ -10,6 +10,8 @@ public abstract class Actor {
 		this.contacto = contacto;
 	}
 
+	public Actor(){}
+	
 	public int getId() {
 		return id;
 	}
@@ -26,6 +28,8 @@ public abstract class Actor {
 		this.contacto = contacto;
 	}
 
+	protected abstract boolean validarIdentificadorUnico(long identificador);
+	
 	@Override
 	public String toString() {
 		return "ID : " + id + ", Contacto : " + contacto + ", ";

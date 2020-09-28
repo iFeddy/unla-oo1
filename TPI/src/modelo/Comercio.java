@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Comercio {
+public class Comercio extends Actor{
 	private String nombreComercio;
 	private long cuit;
 	private double costoFijo;
@@ -17,11 +17,12 @@ public class Comercio {
 	private List<Articulo>lstArticulo;
 	private List<Carrito>lstCarrito;
 	
-	public Comercio(String nombreComercio, long cuit, double costoFijo,
-			double costoPorKm, int diasDescuento, int porcentajeDescuentoDia,
-			int porcentajeDescuentoEfectivo, List<DiaRetiro> lstDiaRetiro,
-			List<Articulo> lstArticulo, List<Carrito> lstCarrito) throws Exception {
-		super();
+	public Comercio(int id, Contacto contacto, String nombreComercio,
+			long cuit, double costoFijo, double costoPorKm, int diasDescuento,
+			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo,
+			List<DiaRetiro> lstDiaRetiro, List<Articulo> lstArticulo,
+			List<Carrito> lstCarrito) throws Exception {
+		super(id, contacto);
 		this.nombreComercio = nombreComercio;
 		this.setCuit(cuit);
 		this.costoFijo = costoFijo;
@@ -33,11 +34,11 @@ public class Comercio {
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.lstCarrito = new ArrayList<Carrito>();
 	}
-
-	public Comercio(){
+	
+	public Comercio() {
 		this.lstArticulo = new ArrayList<Articulo>();
 	}
-	
+
 	public String getNombreComercio() {
 		return nombreComercio;
 	}
@@ -122,8 +123,8 @@ public class Comercio {
 		this.lstCarrito = lstCarrito;
 	}
 
-	private boolean validarIdentificadorUnico(long cuit_long){
-        String cuit = Long.toString(cuit_long);           
+	public boolean validarIdentificadorUnico(long identificador){
+        String cuit = Long.toString(identificador);           
         cuit = cuit.replaceAll("[^\\d]", "");        
         if (cuit.length() != 11){
             return false;
