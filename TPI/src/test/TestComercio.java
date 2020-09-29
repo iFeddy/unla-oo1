@@ -11,7 +11,18 @@ import modelo.Ubicacion;
 public class TestComercio {
     public static void main(final String[] args) throws Exception {
     	
+    	//Escenario 1, COMERCIO , vallidando CUIT
     	try {
+    		System.out.println("COMERCIO VALIDANDO CUIT :  ");
+    		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5, null, null, null);
+    		System.out.println(almacenGranate);
+			
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
+    	
+    	try {
+    		System.out.println("");
     		System.out.println("COMERCIO ");
     		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5, null, null, null);
     		

@@ -121,6 +121,7 @@ public class Comercio extends Actor {
 		this.lstCarrito = lstCarrito;
 	}
 
+	// VALIDAR CUIT
 	public boolean validarIdentificadorUnico(long identificador) {
 		String cuit = Long.toString(identificador);
 		cuit = cuit.replaceAll("[^\\d]", "");
@@ -157,8 +158,9 @@ public class Comercio extends Actor {
 				+ ", \nArticulos : " + lstArticulo + ", \nCarritos : " + lstCarrito + ", ";
 	}
 
-	// ARTICULOS
-	// TRAER ARTICULOS POR CODIGO DE BARRAS
+/******************  ARTICULOS  *******************************/
+	
+	// TRAER ARTICULOS POR ID
 	public Articulo traerArticulo(int id) {
 		Articulo articulo = null;
 		int i = 0;
@@ -166,7 +168,7 @@ public class Comercio extends Actor {
 			Articulo art = lstArticulo.get(i);
 			if (art.getId() == id) {
 				articulo = art;
-				System.out.println("Articulo ID : " + art.getId() + "," + art.getNombre());
+				//System.out.println("Articulo ID : " + art.getId() + "," + art.getNombre());
 			}
 			i++;
 		}
@@ -182,7 +184,7 @@ public class Comercio extends Actor {
 			Articulo art = lstArticulo.get(i);
 			if (art.getCodBarras().equals(codBarras)) {
 				articuloPorcodBarras = art;
-				System.out.println("Codigo de Barras Articulo : " + art.getCodBarras());
+				System.out.println("Codigo de Barras : " + art.getCodBarras());
 			}
 			i++;
 		}
@@ -224,7 +226,7 @@ public class Comercio extends Actor {
 		int id = 0;
 		Articulo articulo1 = new Articulo();
 		if (articulo1.isValidBarCodeEAN(codBarras) == false) {
-			throw new Exception("Codigo de Barras de algun Articulo es no Valido! ");
+			throw new Exception("Codigo de Barras Articulo es no Valido! ");
 		}
 		if (this.traerArticulocodBarras(codBarras) != null) {
 			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
@@ -233,8 +235,8 @@ public class Comercio extends Actor {
 			id = 1;
 		} else {
 			// list.get(list.size() - 1)
-			Articulo ultimo = lstArticulo.get(lstArticulo.size() - 1);
-			id = (ultimo.getId() + 1);
+			Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
+			id = (ultimoId.getId() + 1);
 		}
 		return lstArticulo.add(new Articulo(id, nombre, codBarras, precio));
 	}
@@ -258,11 +260,32 @@ public class Comercio extends Actor {
 				}
 				i++;
 			}
-		System.out.println("Modificando nombre del Articulo por : " + nombre);
+		System.out.println("ID: " +  id + ", por nombre : " + nombre);
 		return modificada;
 	}
 
-	// CARRITOS
+	// ELIMINAR ARTICULO
+	public boolean eliminarArticulo(int id) throws Exception{
+		boolean eliminado = false;
+		int i= 0 ;
+		if(this.traerArticulo(id)== null){
+			throw new Exception("ID de Articulo Inexiste! ");
+		}
+		while (lstArticulo != null && i < lstArticulo.size()) {
+			Articulo art = lstArticulo.get(i);
+			if(art.getId() == id){
+				lstArticulo.remove(i);
+				 eliminado = true; 
+			}					 
+				 i++;
+		 }		
+		System.out.println("ID: " + id );
+		return eliminado;
+	}
+
+	
+/******************  CARRITOS *******************************/
+	
 	// TRAER CARRITO POR ID
 	public Carrito traerCarrito(int id) {
 		Carrito carrito = null;
@@ -288,9 +311,10 @@ public class Comercio extends Actor {
 		if (lstCarrito == null || lstCarrito.size() == 0) {
 			id = 1;
 		} else {
-			Carrito ultimo = lstCarrito.get(lstCarrito.size() - 1);
-			id = ultimo.getId() + 1;
+			Carrito ultimoId = lstCarrito.get(lstCarrito.size() - 1);
+			id = ultimoId.getId() + 1;
 		}
 		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
 	}
+
 }

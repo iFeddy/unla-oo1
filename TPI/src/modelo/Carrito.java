@@ -78,7 +78,8 @@ public class Carrito {
 				+ ", ";
 	}
 	
-	// ITEM CARRITO
+/****************************  ITEMS CARRITO *******************************/
+	
     // AGREGAR ITEM
  	public boolean agregarItem(Articulo articulo, int cantidad)throws Exception{
  		ItemCarrito itemcarrito = null;
@@ -124,7 +125,7 @@ public class Carrito {
 					int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;
 					lstItemCarrito.get(i).setCantidad(nuevaCantidad);
 					lstItemCarrito.remove(i);
-					System.out.println("\nItem del carrito eliminado , ya que la cantidad a eliminar es la misma");
+					System.out.println("\nItem del carrito : " + articulo.getId() + " eliminado , ya que la cantidad a eliminar es la misma");
 				}	
 			}
 		}
@@ -135,18 +136,18 @@ public class Carrito {
 			return itemEliminado;
 		}
 
-		//Calcula el total del Carrito sin Envio
-		public double calcularTotalCarrito(){
-			double total = 0;
-			for(ItemCarrito p : this.getLstItemCarrito()){
-				Articulo articulo = p.getArticulo();
-				total = total + (articulo.getPrecio() * p.getCantidad());
-			}
-			return total;
+	// CCULA TOTAL DEL CARRITO SIN ENVIO	
+ 	public double calcularTotalCarrito() {
+		double total = 0;
+		for (ItemCarrito p : this.getLstItemCarrito()) {
+			Articulo articulo = p.getArticulo();
+			total = total + (articulo.getPrecio() * p.getCantidad());
 		}
+		return total;
+	}
 
-		//Calcular Subtotal del Item		
-		public double calcularSubTotalItem(Articulo articulo){
+	// CALCULAR SUBTOTAL DEL ITEM			
+	public double calcularSubTotalItem(Articulo articulo){
 			double itemPrecio = articulo.getPrecio();
 			double subtotal = 0;
 			for(ItemCarrito p : this.getLstItemCarrito()){

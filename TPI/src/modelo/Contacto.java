@@ -43,6 +43,7 @@ public class Contacto {
 		this.ubicacion = ubicacion;
 	}
 
+	// VALIDAR EMAIL
 	private boolean validarEmail(String email){
     	// Patr�n para validar el email
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

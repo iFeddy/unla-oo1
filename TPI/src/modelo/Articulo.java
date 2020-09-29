@@ -56,6 +56,8 @@ public class Articulo {
 				+ codBarras + ", Precio : " + precio + "\n";
 	}
 	
+	// VALIDAR CODIGO DE BARRAS
+	
 	public boolean isValidBarCodeEAN(String codBarras) {
         int digit;
         int calculated;

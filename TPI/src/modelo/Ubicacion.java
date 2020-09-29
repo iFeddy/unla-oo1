@@ -37,6 +37,7 @@ public class Ubicacion {
 		return "Latitud : " + latitud + ", Longitud : " + longitud + "";
 	}
 	
+	// TRAER OBJETO UBUCACION
 	public Ubicacion traerUbicacion(){
 		return this;
 	}

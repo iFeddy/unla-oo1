@@ -49,7 +49,8 @@ public class Cliente extends Actor{
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-
+	
+	//VALIDAR DNI 
 	public boolean validarIdentificadorUnico(long identificador){
         int length = String.valueOf(identificador).length();
         //System.out.println(length);

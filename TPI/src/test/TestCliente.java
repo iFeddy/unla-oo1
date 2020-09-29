@@ -18,6 +18,8 @@ public class TestCliente {
 		}		
 		// Escenario 2 , TRAYENDO UBICACION forzando excepción longitud y latitud incorrrectos .		
 		try {
+			System.out.println("");
+			System.out.println("UBICACION , VALIDANDO LONGITUD Y LATITUD : ");
 			Ubicacion u = new Ubicacion(30, 400);
 			System.out.println("Mi ubicacion es  : " + u.traerUbicacion());
 
@@ -40,6 +42,8 @@ public class TestCliente {
 		/*CONTACTO
 		  Escenario 2 , TRAYENDO CONTACTO , validando direccion de email */
 		try {
+			System.out.println("");
+			System.out.println("CONTACTO , VALIDANDO EMAIL : ");
 			Ubicacion ubicacion = new Ubicacion(30,20);
 			Contacto contacto = new Contacto("email@gmail", "+5491122334455", ubicacion);
 			System.out.println(contacto);
@@ -49,7 +53,7 @@ public class TestCliente {
 		
 		/*CLIENTE
 		  Escenario 1 , TRAYENDO CLIENTE */
-		try {
+		try {			
 			System.out.println("");
 			System.out.println("CLIENTE : ");
 			Ubicacion ubicacion = new Ubicacion(30,20);
@@ -62,6 +66,8 @@ public class TestCliente {
 		/*CLIENTE
 		  Escenario 2 , TRAYENDO CLIENTE , validando DNI */
 		try {
+			System.out.println("");
+			System.out.println("CLIENTE , VALIDANDO DNI : ");
 			Ubicacion ubicacion = new Ubicacion(30,20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 301234567, 'M');
