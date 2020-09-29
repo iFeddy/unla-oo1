@@ -78,7 +78,7 @@ public class Carrito {
 				+ ", ";
 	}
 	
-// ITEM CARRITO
+	// ITEM CARRITO
     // AGREGAR ITEM
  	public boolean agregarItem(Articulo articulo, int cantidad)throws Exception{
  		ItemCarrito itemcarrito = null;
@@ -133,6 +133,29 @@ public class Carrito {
 				throw new Exception("Item no encontrado ni eliminado");
 				}
 			return itemEliminado;
+		}
+
+		//Calcula el total del Carrito sin Envio
+		public double calcularTotalCarrito(){
+			double total = 0;
+			for(ItemCarrito p : this.getLstItemCarrito()){
+				Articulo articulo = p.getArticulo();
+				total = total + (articulo.getPrecio() * p.getCantidad());
+			}
+			return total;
+		}
+
+		//Calcular Subtotal del Item		
+		public double calcularSubTotalItem(Articulo articulo){
+			double itemPrecio = articulo.getPrecio();
+			double subtotal = 0;
+			for(ItemCarrito p : this.getLstItemCarrito()){
+				Articulo articuloLista = p.getArticulo();
+				if(articuloLista.equals(articulo)){
+					subtotal = itemPrecio * p.getCantidad();
+				}
+			}
+			return subtotal;
 		}
 
 }

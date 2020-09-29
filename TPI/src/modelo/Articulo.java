@@ -74,6 +74,6 @@ public class Articulo {
         } else {
             return false;
         }
-    }
-	
+	}
+		
 }

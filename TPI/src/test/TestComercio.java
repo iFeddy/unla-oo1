@@ -35,12 +35,29 @@ public class TestComercio {
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);			
 			System.out.println(carrito1.mostrarItem(carrito1));
 			
-			almacenGranate.agregarCarrito(1, LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
+			Carrito carrito2 = new Carrito();
+			carrito2.agregarItem(almacenGranate.traerArticulo(1),3);
+			carrito2.agregarItem(almacenGranate.traerArticulo(2),2);
+			carrito2.agregarItem(almacenGranate.traerArticulo(3),1);
+			carrito2.agregarItem(almacenGranate.traerArticulo(3),2);			
+			
+			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
+			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito2), null);
+			
     		//System.out.println(carrito1.mostrarItem(carrito1));
     		System.out.println("");
     		System.out.println("CARRITO : ");
-    		System.out.println(almacenGranate.traerCarrito(1));
+			System.out.println(almacenGranate.traerCarrito(1));
+			System.out.println(almacenGranate.traerCarrito(2));
 			
+			//Subtotal Item 3
+			System.out.println("Subtotal Item 3:");
+			System.out.println(carrito2.calcularSubTotalItem(almacenGranate.traerArticulo(3)));
+			
+			//Mostrar total
+			System.out.println("Total Carrito 2:");
+			System.out.println(carrito2.calcularTotalCarrito());
+
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}

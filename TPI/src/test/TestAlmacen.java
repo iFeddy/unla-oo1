@@ -9,21 +9,22 @@ public class TestAlmacen {
 
 		Comercio almacenGranate = new Comercio();
 		
-		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepción. 
+		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepciï¿½n. 
 		try {
 			System.out.println("LISTA DE ARTICULOS : ");
 			almacenGranate.agregarArticulo("Primer Producto", "1234567876788", 50);
 			almacenGranate.agregarArticulo("Segundo Producto", "5678987654322",40);
 			almacenGranate.agregarArticulo("Tercer Producto", "3333333333338", 60);
 			almacenGranate.agregarArticulo("Cuarto Producto", "4444444444444", 70);
-			
+			almacenGranate.agregarArticulo("Quinto Producto", "4444444444444", 70);
+
 			System.out.println(almacenGranate.getLstArticulo());
 		
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 2 , AGREGANDO ARTICULOS forzando excepción , mismo codigo de Barras. 
+		// Escenario 2 , AGREGANDO ARTICULOS forzando excepciï¿½n , mismo codigo de Barras. 
 		try {
 			almacenGranate.agregarArticulo("Cuarto Producto", "1234567876788", 50);
 			System.out.println(almacenGranate.getLstArticulo());
@@ -53,10 +54,11 @@ public class TestAlmacen {
 			Carrito carrito1 = new Carrito();
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),4);
-			carrito1.agregarItem(almacenGranate.traerArticulo(2),3);
-			
+			carrito1.agregarItem(almacenGranate.traerArticulo(2),3); // subtotal precio unitario x cant
+
 			carrito1.eliminarItem(almacenGranate.traerArticulo(1),3);
-			System.out.println(carrito1.mostrarItem(carrito1));
+
+			System.out.println(carrito1.mostrarItem(carrito1));			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
