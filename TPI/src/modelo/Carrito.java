@@ -87,7 +87,8 @@ public class Carrito {
 		int i = 0;
 		while (itemcarrito == null && i < lstItemCarrito.size()) {
 			ItemCarrito item = lstItemCarrito.get(i);
-			if (articulo.getId() == lstItemCarrito.get(i).getArticulo().getId()) {
+			Articulo articuloLista = item.getArticulo();
+			if (articulo.equals(articuloLista)) {
 				itemcarrito = item;
 				itemAgregado = true;
 				int nuevaCantidad = lstItemCarrito.get(i).getCantidad()+cantidad;
@@ -98,7 +99,7 @@ public class Carrito {
 		if (!itemAgregado) {
 			ItemCarrito p = new ItemCarrito(articulo,cantidad);				
 			lstItemCarrito.add(p);			
-			}		
+		}		
 		return itemAgregado;		
 	}
  	
@@ -111,14 +112,16 @@ public class Carrito {
  		return mostrar;
  	}
  	
- 	// ELIMINAR ITEM
+	 // ELIMINAR ITEM
+	 // Traer x art
  	public boolean eliminarItem(Articulo articulo, int cantidad)throws Exception{
  		ItemCarrito itemcarrito = null;
 		boolean itemEliminado = false;
 		int i = 0;
 		while (itemcarrito == null && i < lstItemCarrito.size()) {
 			ItemCarrito item = lstItemCarrito.get(i);
-			if (articulo.getId() == lstItemCarrito.get(i).getArticulo().getId()) {
+			Articulo articuloLista = item.getArticulo();
+			if (articulo.equals(articuloLista)) {
 				itemcarrito = item;
 				itemEliminado = true;
 				int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;// resta cantidad a eliminar
@@ -148,16 +151,35 @@ public class Carrito {
 
 	// CALCULAR SUBTOTAL DEL ITEM			
 	public double calcularSubTotalItem(Articulo articulo){
-			double itemPrecio = articulo.getPrecio();
-			double subtotal = 0;
-			for(ItemCarrito p : this.getLstItemCarrito()){
-				Articulo articuloLista = p.getArticulo();
-				if(articuloLista.equals(articulo)){
-					subtotal = itemPrecio * p.getCantidad();
-				}
+		double itemPrecio = articulo.getPrecio();
+		double subtotal = 0;
+		for(ItemCarrito p : this.getLstItemCarrito()){
+			Articulo articuloLista = p.getArticulo();
+			if(articuloLista.equals(articulo)){
+				subtotal = itemPrecio * p.getCantidad();
 			}
-			return subtotal;
 		}
+		return subtotal;
+	}
+	
+	//Calcular Descuento según día
+	public double calcularDescuentoDia(int diaDescuento, double porcentaje){
+		double descuento = 0;
+		double total = this.calcularTotalCarrito();
+		if(fecha.getDayOfWeek().getValue() == diaDescuento){
+			descuento = (total * porcentaje)/100;
+		}
+		return descuento;
+	}
 
+	//Calcular Descuento Efectivo
+	public double calcularDescuentoDia(double porcentajeDescuentoEfectivo){
+		double descuento = 0;
+		double total = this.calcularTotalCarrito();
+
+		descuento = (total * porcentajeDescuentoEfectivo)/100;
+
+		return descuento;
+	}
 }
 

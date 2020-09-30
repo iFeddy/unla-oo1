@@ -69,6 +69,10 @@ public class TestComercio {
 			System.out.println("Total Carrito 2:");
 			System.out.println(carrito2.calcularTotalCarrito());
 
+			//Descuento Efectivo
+			System.out.println("Total Descuento Efecivo:");
+			System.out.println(carrito2.calcularDescuentoDia(30));
+
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}

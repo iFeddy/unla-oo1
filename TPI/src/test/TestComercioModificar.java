@@ -6,7 +6,7 @@ import modelo.Comercio;
 public class TestComercioModificar {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		Comercio almacenGranate = new Comercio();
 		
 		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepci�n. 

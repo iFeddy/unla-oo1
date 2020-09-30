@@ -223,17 +223,15 @@ public class Comercio extends Actor {
 
 	// AGREGAR ARTICULO
 	public boolean agregarArticulo(String nombre, String codBarras, double precio) throws Exception {
-		int id = 0;
+		int id = 1;
 		Articulo articulo1 = new Articulo();
-		if (articulo1.isValidBarCodeEAN(codBarras) == false) {
+		if (!(articulo1.isValidBarCodeEAN(codBarras))) {
 			throw new Exception("Codigo de Barras Articulo es no Valido! ");
 		}
 		if (this.traerArticulocodBarras(codBarras) != null) {
 			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
 		}
-		if (lstArticulo == null || lstArticulo.size() == 0) {
-			id = 1;
-		} else {
+		if (lstArticulo.size() > 0) {			
 			// list.get(list.size() - 1)
 			Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
 			id = (ultimoId.getId() + 1);
@@ -270,7 +268,7 @@ public class Comercio extends Actor {
 	// ELIMINAR ARTICULO
 	public boolean eliminarArticulo(int id) throws Exception{
 		boolean eliminado = false;
-		int i= 0 ;
+		int i= 0;
 		if(this.traerArticulo(id)== null){
 			throw new Exception("ID de Articulo Inexiste! ");
 		}
@@ -305,12 +303,13 @@ public class Comercio extends Actor {
 
 	// AGREGAR CARRITO
 	public boolean agregarCarrito(LocalDate fecha, boolean cerrado, double descuento, Cliente cliente,
-		List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
+	List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
 		int id = 0;
 		Entrega entrega1 = null;
 		if (this.traerCarrito(id) != null) {
 			throw new Exception("Carrito existente! ");
 		}
+		// > 0
 		if (lstCarrito == null || lstCarrito.size() == 0) {
 			id = 1;
 		} else {
