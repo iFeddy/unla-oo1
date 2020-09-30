@@ -242,25 +242,28 @@ public class Comercio extends Actor {
 	}
 
 	// MODIFICAR ARTICULO
-	public boolean modificarArticulo(int id, String nombre, String codigoBarras, double precio) throws Exception {
-		boolean modificada = false;
+	public boolean modificarArticulo(int id ,String nombre ,String codigoBarras, double precio) throws Exception{		
+		boolean modificada = false;	
 		int i = 0;
-		if (this.traerArticulo(id) == null) {
-			throw new Exception("ID de Articulo Inexiste! ");
+		Articulo articulo1 = new Articulo();		
+		if(articulo1.isValidBarCodeEAN(codigoBarras) == false){
+			throw new Exception("Codigo de Barras del Articulo invalido! ");
 		}
-		if (this.traerArticuloNombre(nombre) != null) {
-			throw new Exception("Nombre de Articulo existente! ");
-		} else
-			while (nombre != null && i < lstArticulo.size()) {
-				Articulo art = lstArticulo.get(i);
-				if (art.getId() == id) {
-					art.setNombre(nombre);
-					art.setPrecio(precio);
-					modificada = true;
-				}
-				i++;
+		else if(this.traerArticulo(id)== null){
+			throw new Exception("ID del Articulo Inexistente! ");
 			}
-		System.out.println("ID: " +  id + ", por nombre : " + nombre);
+			else{
+				while (nombre != null && i < lstArticulo.size()) {
+					Articulo art = lstArticulo.get(i);
+					if(art.getId() == id){
+						art.setNombre(nombre);
+						art.setPrecio(precio);						
+						modificada = true; 
+					}					 
+					i++;
+				}		
+				System.out.println("Modificando nombre del Articulo por " + nombre+", y precio actualizado a: $"+precio);
+		}
 		return modificada;
 	}
 

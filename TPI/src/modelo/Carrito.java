@@ -121,22 +121,22 @@ public class Carrito {
 			if (articulo.getId() == lstItemCarrito.get(i).getArticulo().getId()) {
 				itemcarrito = item;
 				itemEliminado = true;
-				if(lstItemCarrito.get(i).getCantidad()== cantidad){
-					int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;
-					lstItemCarrito.get(i).setCantidad(nuevaCantidad);
-					lstItemCarrito.remove(i);
-					System.out.println("\nItem del carrito : " + articulo.getId() + " eliminado , ya que la cantidad a eliminar es la misma");
+				int nuevaCantidad = lstItemCarrito.get(i).getCantidad()-cantidad;// resta cantidad a eliminar
+				lstItemCarrito.get(i).setCantidad(nuevaCantidad);				//guarda la nueva cantidad
+				if(lstItemCarrito.get(i).getCantidad()== 0){			//si cantidad es la misma
+					lstItemCarrito.remove(i);							//borra el item de la lista
+					System.out.println("Item del carrito eliminado , ya que la cantidad a eliminar es la misma");
 				}	
 			}
-		}
 			i++;
+		}
+			
 			if (!itemEliminado) {
 				throw new Exception("Item no encontrado ni eliminado");
 				}
 			return itemEliminado;
 		}
-
-	// CCULA TOTAL DEL CARRITO SIN ENVIO	
+	// CALCULA TOTAL DEL CARRITO SIN ENVIO	
  	public double calcularTotalCarrito() {
 		double total = 0;
 		for (ItemCarrito p : this.getLstItemCarrito()) {
