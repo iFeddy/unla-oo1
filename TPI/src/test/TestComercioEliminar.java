@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import modelo.Carrito;
 import modelo.Comercio;
@@ -9,7 +9,7 @@ public class TestComercioEliminar {
 
 		Comercio almacenGranate = new Comercio();
 		
-		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepción. 
+		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepciï¿½n. 
 		try {
 			System.out.println("LISTA DE ARTICULOS : ");
 			almacenGranate.agregarArticulo("Primer Producto", "1234567876788", 50);
@@ -23,7 +23,7 @@ public class TestComercioEliminar {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 2 , AGREGANDO ARTICULOS forzando excepción , mismo codigo de Barras. 
+		// Escenario 2 , AGREGANDO ARTICULOS forzando excepciï¿½n , mismo codigo de Barras. 
 		try {
 			almacenGranate.agregarArticulo("Cuarto Producto", "1234567876788", 50);
 			System.out.println(almacenGranate.getLstArticulo());

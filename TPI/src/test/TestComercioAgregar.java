@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import java.time.LocalDate;
 
@@ -34,7 +34,7 @@ public class TestComercioAgregar {
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);			
 			System.out.println(carrito1.mostrarItem(carrito1));
 			
-			almacenGranate.agregarCarrito(1, LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
+			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
     		//System.out.println(carrito1.mostrarItem(carrito1));
     		System.out.println("");
     		System.out.println("CARRITO : ");

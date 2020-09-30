@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import modelo.Articulo;
 import modelo.Comercio;
@@ -9,7 +9,7 @@ public class TestComercioModificar {
 		// TODO Auto-generated method stub
 		Comercio almacenGranate = new Comercio();
 		
-		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepción. 
+		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepciï¿½n. 
 		try {
 			System.out.println("LISTA DE ARTICULOS : ");
 			almacenGranate.agregarArticulo("Pure de Tomates", "1234567876788", 50);
@@ -29,7 +29,7 @@ public class TestComercioModificar {
 			Articulo articulo1 = new Articulo();	
 			articulo1=almacenGranate.traerArticuloNombre("Pure de Tomates");
 			System.out.println(articulo1);
-			almacenGranate.modificarArticulo(articulo1.getId(),"Puré de Tomates", articulo1.getCodBarras(), 40);
+			almacenGranate.modificarArticulo(articulo1.getId(),"Purï¿½ de Tomates", articulo1.getCodBarras(), 40);
 			System.out.println(almacenGranate.getLstArticulo());
 			articulo1=almacenGranate.traerArticuloNombre("Leche Entera");
 			System.out.println(articulo1);
@@ -47,7 +47,7 @@ public class TestComercioModificar {
 			Articulo articulo1 = new Articulo();	
 			articulo1=almacenGranate.traerArticuloNombre("Tomates Enlatados");		
 			System.out.println("Articulo: "+articulo1);
-			almacenGranate.modificarArticulo(articulo1.getId(),"Puré de Tomates", articulo1.getCodBarras(), 40);
+			almacenGranate.modificarArticulo(articulo1.getId(),"Purï¿½ de Tomates", articulo1.getCodBarras(), 40);
 			System.out.println(almacenGranate.getLstArticulo());
 					
 		}
