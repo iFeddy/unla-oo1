@@ -32,6 +32,18 @@ public class Comercio extends Actor {
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.lstCarrito = new ArrayList<Carrito>();
 	}
+	public Comercio(int id, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
+			int diasDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
+		super(id);
+		this.nombreComercio = nombreComercio;
+		this.setCuit(cuit);
+		this.costoFijo = costoFijo;
+		this.costoPorKm = costoPorKm;
+		this.diasDescuento = diasDescuento;
+		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
+		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
+		
+	}
 
 	public Comercio() {
 		this.lstArticulo = new ArrayList<Articulo>();

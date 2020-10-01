@@ -9,9 +9,13 @@ public abstract class Actor {
 		this.id = id;
 		this.contacto = contacto;
 	}
-
-	public Actor(){}
-	
+	public Actor(int id){
+		this.id = id;
+	}
+	public Actor(){
+		
+	}
+		
 	public int getId() {
 		return id;
 	}

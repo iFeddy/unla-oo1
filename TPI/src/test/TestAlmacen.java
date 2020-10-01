@@ -9,7 +9,7 @@ public class TestAlmacen {
 
 		Comercio almacenGranate = new Comercio();
 		
-		// Escenario 1 , AGREGANDO ARTICULOS sin forzar la excepciï¿½n. 
+		System.out.println("ESCENARIO 1: AGREGANDO ARTICULOS SIN FORZAR EXCEPCION"); 
 		try {
 			System.out.println("LISTA DE ARTICULOS : ");
 			almacenGranate.agregarArticulo("Primer Producto", "1234567876788", 50);
@@ -24,7 +24,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 2 , AGREGANDO ARTICULOS forzando  excepción , mismo codigo de Barras. 
+		System.out.println("\nESCENARIO 2: AGREGANDO ARTICULOS FORZANDO EXCEPCION MISMO CODIGO DE BARRAS"); 
 		try {
 			System.out.println("");
 			System.out.println("AGREGANDO ARTICULO MISMO COD.BARRAS:" );
@@ -35,7 +35,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 1 , MODIFICANDO ARTICULO ,sin forzar excepcion
+		System.out.println("\nESCENARIO 1: MODIFICANDO ARTICULO SIN FORZAR EXCEPCION"); 
 		try {
 			System.out.println("");
 			System.out.println("MODIFICANDO ARTICULO :");
@@ -46,7 +46,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 2 , MODIFICANDO ARTICULO ,forzando excepcion ID no Existente
+		System.out.println("\nESCENARIO 2: MODIFICANDO ARTICULOS FORZAR EXCEPCION ID INEXISTENTE"); 
 		try {
 			System.out.println("");
 			System.out.println("MODIFICANDO ARTICULO INEXISTENTE "
@@ -58,7 +58,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 1 , ELIMINANDO ARTICULO ,sin excepcion
+		System.out.println("\nESCENARIO 1: ELIMINANDO ARTICULO SIN FORZAR EXCEPCION"); 
 		try {
 			System.out.println("");
 			System.out.println("ELIMINANDO ARTICULO :");
@@ -72,7 +72,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		// Escenario 1 , AGREGANDO ITEMS A CARRITO
+		System.out.println("\nESCENARIO 1: AGREGANDO ITEMS A CARRITO"); 
 		try {
 			System.out.println("");
 			System.out.println("AGREGANDO ITEMS A CARRITO : ");
@@ -86,10 +86,10 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
+		System.out.println("\nESCENARIO 1: ELIMINANDO ITEMS DEL CARRITO"); 
 		try {
 			System.out.println("");
-			System.out.println("ELIMINANDO ITEMS : ");
+			System.out.println("\nELIMINANDO ITEMS: SI LA CANTIDAD ES LA MISMA ELIMINA TODO EL ITEM ");
 			Carrito carrito1 = new Carrito();
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),3);
@@ -98,7 +98,9 @@ public class TestAlmacen {
 			carrito1.agregarItem(almacenGranate.traerArticulo(5),6); // subtotal precio unitario x cant
 			
 			carrito1.eliminarItem(almacenGranate.traerArticulo(1),3);
-
+			carrito1.eliminarItem(almacenGranate.traerArticulo(2),5);	
+			carrito1.eliminarItem(almacenGranate.traerArticulo(4),1);
+			carrito1.eliminarItem(almacenGranate.traerArticulo(5),2);
 			System.out.println(carrito1.mostrarItem(carrito1));			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());

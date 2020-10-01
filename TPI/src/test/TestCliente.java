@@ -7,8 +7,8 @@ import modelo.Ubicacion;
 public class TestCliente {
 	public static void main(String[] args) throws Exception {
 		
-		/*UBICACION 
-		  Escenario 1 , TREYENDO UBICACION */ 
+		/*UBICACION */
+		System.out.println("ESCENARIO 1: TRAYENDO UBICACION VALIDA"); 
 		try {
 			System.out.println("UBICACION: ");
 			Ubicacion u = new Ubicacion(30,20);
@@ -16,7 +16,7 @@ public class TestCliente {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}		
-		// Escenario 2 , TRAYENDO UBICACION forzando excepción longitud y latitud incorrrectos .		
+		System.out.println("\nESCENARIO 2: TRAYENDO UBICACION FORZANDO EXCEPCIÓN LONGITUD Y LATITUD CORRECTOS"); 		
 		try {
 			System.out.println("");
 			System.out.println("UBICACION , VALIDANDO LONGITUD Y LATITUD : ");
@@ -27,8 +27,8 @@ public class TestCliente {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		/*CONTACTO
-		  Escenario 1 , TRAYENDO CONTACTO */
+		/*CONTACTO*/
+		System.out.println("\nESCENARIO 1: TRAYENDO CONTACTO");
 		try {
 			System.out.println("");
 			System.out.println("CONTACTO : ");
@@ -39,8 +39,8 @@ public class TestCliente {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		/*CONTACTO
-		  Escenario 2 , TRAYENDO CONTACTO , validando direccion de email */
+		/*CONTACTO*/
+		 System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DIRECCIÓN DE EMAIL");
 		try {
 			System.out.println("");
 			System.out.println("CONTACTO , VALIDANDO EMAIL : ");
@@ -51,8 +51,8 @@ public class TestCliente {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		/*CLIENTE
-		  Escenario 1 , TRAYENDO CLIENTE */
+		/*CLIENTE*/
+		System.out.println("\nESCENARIO 1: TRAYENDO CLIENTE");
 		try {			
 			System.out.println("");
 			System.out.println("CLIENTE : ");
@@ -63,8 +63,8 @@ public class TestCliente {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		/*CLIENTE
-		  Escenario 2 , TRAYENDO CLIENTE , validando DNI */
+		/*CLIENTE*/
+		  System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DNI");
 		try {
 			System.out.println("");
 			System.out.println("CLIENTE , VALIDANDO DNI : ");

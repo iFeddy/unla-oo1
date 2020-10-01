@@ -11,16 +11,16 @@ import modelo.Ubicacion;
 public class TestComercio {
     public static void main(final String[] args) throws Exception {
     	
-    	//Escenario 1, COMERCIO , vallidando CUIT
+    	System.out.println("ESCENARIO 1: ");
     	try {
-    		System.out.println("COMERCIO VALIDANDO CUIT :  ");
+    		System.out.println("COMERCIO VALIDANDO CUIT FORZANDO EXCEPCION ");
     		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5, null, null, null);
     		System.out.println(almacenGranate);
 			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-    	
+    	System.out.println("\nESCENARIO 2: VALIDANDO CUIT ");
     	try {
     		System.out.println("");
     		System.out.println("COMERCIO ");
@@ -61,7 +61,6 @@ public class TestComercio {
 			System.out.println(almacenGranate.traerCarrito(1));
 			System.out.println(almacenGranate.traerCarrito(2));
 			
-			//Subtotal Item 3
 			System.out.println("Subtotal Item 3:");
 			System.out.println(carrito2.calcularSubTotalItem(almacenGranate.traerArticulo(3)));
 			
