@@ -30,7 +30,7 @@ public class Comercio extends Actor {
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
 		this.lstArticulo = new ArrayList<Articulo>();
-		this.lstCarrito = new ArrayList<Carrito>();
+		this.setLstCarrito(new ArrayList<Carrito>());
 	}
 	public Comercio(int id, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
 			int diasDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
@@ -41,8 +41,7 @@ public class Comercio extends Actor {
 		this.costoPorKm = costoPorKm;
 		this.diasDescuento = diasDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
-		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
-		
+		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;		
 	}
 
 	public Comercio() {
@@ -314,18 +313,14 @@ public class Comercio extends Actor {
 	// AGREGAR CARRITO
 	public boolean agregarCarrito(LocalDate fecha, boolean cerrado, double descuento, Cliente cliente,
 	List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
-		int id = 0;
+		int id = 1;
 		Entrega entrega1 = null;
-		if (this.traerCarrito(id) != null) {
-			throw new Exception("Carrito existente! ");
-		}
-		// > 0
-		if (lstCarrito == null || lstCarrito.size() == 0) {
-			id = 1;
-		} else {
+
+		if (lstCarrito.size() > 0) {
 			Carrito ultimoId = lstCarrito.get(lstCarrito.size() - 1);
 			id = ultimoId.getId() + 1;
 		}
+		
 		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
 	}
 
