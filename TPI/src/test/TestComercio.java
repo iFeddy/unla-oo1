@@ -43,7 +43,7 @@ public class TestComercio {
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),1);
-			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);			
+			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);
 			System.out.println(carrito1.mostrarItem(carrito1));
 			
 			Carrito carrito2 = new Carrito();

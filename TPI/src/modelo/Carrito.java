@@ -80,11 +80,29 @@ public class Carrito {
 	
 /****************************  ITEMS CARRITO *******************************/
 	
+ 	// TRAER ITEMCARRITO POR ARTICULO 	
+ 	public ItemCarrito traerItemPorArticulo(Articulo articulo){
+ 		ItemCarrito itemcarrito = null;
+		int i = 0;
+		while (itemcarrito == null && i < lstItemCarrito.size()) {
+			ItemCarrito c = lstItemCarrito.get(i);			
+			if (c.getArticulo().equals(articulo)) {
+				itemcarrito = c;				
+			}
+			i++;			
+		}		
+		return itemcarrito; 		
+ 	}
+ 	
     // AGREGAR ITEM
  	public boolean agregarItem(Articulo articulo, int cantidad)throws Exception{
  		ItemCarrito itemcarrito = null;
 		boolean itemAgregado = false;
 		int i = 0;
+		Carrito carrito1 = new Carrito();
+		if (carrito1.traerItemPorArticulo(articulo)!= null) {
+			throw new Exception("Articulo a agregar Inexistente! ");
+		} else		 		 		 	
 		while (itemcarrito == null && i < lstItemCarrito.size()) {
 			ItemCarrito item = lstItemCarrito.get(i);
 			Articulo articuloLista = item.getArticulo();
@@ -96,9 +114,8 @@ public class Carrito {
 			}
 			i++;			
 		}
-		if (!itemAgregado) {
-			ItemCarrito p = new ItemCarrito(articulo,cantidad);				
-			lstItemCarrito.add(p);			
+		if (!itemAgregado) {					
+			lstItemCarrito.add(new ItemCarrito(articulo,cantidad));			
 		}		
 		return itemAgregado;		
 	}
@@ -118,6 +135,10 @@ public class Carrito {
  		ItemCarrito itemcarrito = null;
 		boolean itemEliminado = false;
 		int i = 0;
+		Carrito carrito1 = new Carrito();
+		if (carrito1.traerItemPorArticulo(articulo)!= null) {
+			throw new Exception("Articulo a agregar Inexistente! ");
+		} else	
 		while (itemcarrito == null && i < lstItemCarrito.size()) {
 			ItemCarrito item = lstItemCarrito.get(i);
 			Articulo articuloLista = item.getArticulo();
@@ -133,13 +154,13 @@ public class Carrito {
 			}
 			i++;
 		}
-			
 			if (!itemEliminado) {
 				throw new Exception("Item no encontrado ni eliminado");
 				}
 			return itemEliminado;
 		}
-	// CALCULA TOTAL DEL CARRITO SIN ENVIO	
+
+ 	// CALCULA TOTAL DEL CARRITO SIN ENVIO	
  	public double calcularTotalCarrito() {
 		double total = 0;
 		for (ItemCarrito p : this.getLstItemCarrito()) {

@@ -51,6 +51,15 @@ public class Articulo {
 	}
 
 	@Override
+	public boolean equals(Object arti) {
+		Articulo nombre = (Articulo)arti;
+		  if (this.nombre.equals(nombre.getNombre())) {
+		      return true;
+		    }
+		    return false;
+	}
+
+	@Override
 	public String toString() {
 		return "ID Articulo : " + id + ", Nombre : " + nombre + ", Codigo de Barras : "
 				+ codBarras + ", Precio : " + precio + "\n";

@@ -180,7 +180,6 @@ public class Comercio extends Actor {
 			Articulo art = lstArticulo.get(i);
 			if (art.getId() == id) {
 				articulo = art;
-				//System.out.println("Articulo ID : " + art.getId() + "," + art.getNombre());
 			}
 			i++;
 		}
@@ -244,9 +243,8 @@ public class Comercio extends Actor {
 			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
 		}
 		if (lstArticulo.size() > 0) {			
-			// list.get(list.size() - 1)
 			Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
-			id = (ultimoId.getId() + 1);
+			id = (ultimoId.getId() + 1); 
 		}
 		return lstArticulo.add(new Articulo(id, nombre, codBarras, precio));
 	}
@@ -256,7 +254,7 @@ public class Comercio extends Actor {
 		boolean modificada = false;	
 		int i = 0;
 		Articulo articulo1 = new Articulo();		
-		if(articulo1.isValidBarCodeEAN(codigoBarras) == false){
+		if(!(articulo1.isValidBarCodeEAN(codigoBarras))){
 			throw new Exception("Codigo de Barras del Articulo invalido! ");
 		}
 		else if(this.traerArticulo(id)== null){
@@ -272,7 +270,7 @@ public class Comercio extends Actor {
 					}					 
 					i++;
 				}		
-				System.out.println("Modificando nombre del Articulo por " + nombre+", y precio actualizado a: $"+precio);
+				System.out.println("Modificando nombre del Articulo por: " + nombre +", y precio actualizado a: $"+precio);
 		}
 		return modificada;
 	}
