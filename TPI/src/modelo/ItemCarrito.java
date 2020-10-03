@@ -28,7 +28,7 @@ public class ItemCarrito {
 
 	@Override
 	public String toString() {
-		return "" + articulo + ", Cantidad : " + cantidad + "\n";
+		return "" + articulo + "-Cantidad: " + cantidad + "\n";
 	}
 	
 }

@@ -36,7 +36,7 @@ public abstract class Actor {
 	
 	@Override
 	public String toString() {
-		return "ID : " + id + ", Contacto : " + contacto + ", ";
+		return "ID: " + id + "-Contacto: " + contacto + " ";
 	}
 
 }

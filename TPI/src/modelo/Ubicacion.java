@@ -34,7 +34,7 @@ public class Ubicacion {
 
 	@Override
 	public String toString() {
-		return "Latitud : " + latitud + ", Longitud : " + longitud + "";
+		return "Latitud: " + latitud + "-Longitud: " + longitud + "";
 	}
 	
 	// TRAER OBJETO UBUCACION

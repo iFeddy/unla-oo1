@@ -14,7 +14,7 @@ public class TestComercio {
     	System.out.println("ESCENARIO 1: ");
     	try {
     		System.out.println("COMERCIO VALIDANDO CUIT FORZANDO EXCEPCION ");
-    		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5, null, null, null);
+    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5);
     		System.out.println(almacenGranate);
 			
 		} catch (Exception e) {
@@ -24,7 +24,7 @@ public class TestComercio {
     	try {
     		System.out.println("");
     		System.out.println("COMERCIO ");
-    		Comercio almacenGranate = new Comercio(1,null,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5, null, null, null);
+    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5);
     		
     		System.out.println(almacenGranate);    		
     		System.out.println("");
@@ -38,13 +38,13 @@ public class TestComercio {
     		Ubicacion ubicacion = new Ubicacion(30,20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 30123456, 'M');
-			System.out.println("AGREGANDO ITEMS A CARRITO : ");
+			System.out.println("AGREGANDO ITEMS A CARRITO: ");
 			Carrito carrito1 = new Carrito();
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),1);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);
-			System.out.println(carrito1.mostrarItem(carrito1));
+			System.out.println("		"+carrito1.mostrarItem(carrito1));
 			
 			Carrito carrito2 = new Carrito();
 			carrito2.agregarItem(almacenGranate.traerArticulo(1),3);
@@ -57,19 +57,21 @@ public class TestComercio {
 			
     		//System.out.println(carrito1.mostrarItem(carrito1));
     		System.out.println("");
-    		System.out.println("CARRITO : ");
+    		System.out.println("CARRITO: ");
 			System.out.println(almacenGranate.traerCarrito(1));
+			System.out.println("");
 			System.out.println(almacenGranate.traerCarrito(2));
 			
-			System.out.println("Subtotal Item 3:");
+			System.out.println("TOTAL: ");
+			System.out.print("Subtotal Item 3: ");
 			System.out.println(carrito2.calcularSubTotalItem(almacenGranate.traerArticulo(3)));
 			
 			//Mostrar total
-			System.out.println("Total Carrito 2:");
+			System.out.print("Total Carrito 2: ");
 			System.out.println(carrito2.calcularTotalCarrito());
 
 			//Descuento Efectivo
-			System.out.println("Total Descuento Efecivo:");
+			System.out.print("Total Descuento Efecivo: ");
 			System.out.println(carrito2.calcularDescuentoDia(30));
 
 		} catch (Exception e) {

@@ -42,6 +42,9 @@ public class Comercio extends Actor {
 		this.diasDescuento = diasDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;		
+		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		this.lstArticulo = new ArrayList<Articulo>();
+		this.setLstCarrito(new ArrayList<Carrito>());
 	}
 
 	public Comercio() {
@@ -163,10 +166,10 @@ public class Comercio extends Actor {
 
 	@Override
 	public String toString() {
-		return "Comercio : " + nombreComercio + ", CUIT : " + cuit + ", Costo Fijo : " + costoFijo + ", Costo PorKm : "
-				+ costoPorKm + ", Dia de Descuento : " + diasDescuento + ", % Descuento Dia : " + porcentajeDescuentoDia
-				+ ", % Descuento Efectivo :" + porcentajeDescuentoEfectivo + ", \nDia Retiro : " + lstDiaRetiro
-				+ ", \nArticulos : " + lstArticulo + ", \nCarritos : " + lstCarrito + ", ";
+		return "Comercio: " + nombreComercio + "\nCUIT: " + cuit + "\nCosto Fijo: " + costoFijo + "\nCosto PorKm : "
+				+ costoPorKm + "\nDia de Descuento: " + diasDescuento + "\n% Descuento Dia: " + porcentajeDescuentoDia
+				+ "\n% Descuento Efectivo:" + porcentajeDescuentoEfectivo + "\nDia Retiro: " + lstDiaRetiro
+				+ "\nArticulos: " + lstArticulo + "\nCarritos: " + lstCarrito + "";
 	}
 
 /******************  ARTICULOS  *******************************/
@@ -236,15 +239,15 @@ public class Comercio extends Actor {
 		int id = 1;
 		Articulo articulo1 = new Articulo();
 		if (!(articulo1.isValidBarCodeEAN(codBarras))) {
-			throw new Exception("Codigo de Barras Articulo es no Valido! ");
+			throw new Exception("Codigo de Barras Articulo invalido! ");
 		}
-		if (this.traerArticulocodBarras(codBarras) != null) {
-			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
-		}
-		if (lstArticulo.size() > 0) {			
-			Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
-			id = (ultimoId.getId() + 1); 
-		}
+		else if (this.traerArticulocodBarras(codBarras) != null) {
+				throw new Exception("Articulo existente , con el mismo codigo de Barras ");
+			}
+			else if (lstArticulo.size() > 0) {			
+				Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
+				id = (ultimoId.getId() + 1); 
+			}
 		return lstArticulo.add(new Articulo(id, nombre, codBarras, precio));
 	}
 
@@ -279,7 +282,7 @@ public class Comercio extends Actor {
 		boolean eliminado = false;
 		int i= 0;
 		if(this.traerArticulo(id)== null){
-			throw new Exception("ID de Articulo Inexiste! ");
+			throw new Exception("ID de Articulo Inexistente! ");
 		}
 		while (lstArticulo != null && i < lstArticulo.size()) {
 			Articulo art = lstArticulo.get(i);

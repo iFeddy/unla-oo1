@@ -72,10 +72,10 @@ public class Carrito {
 	}
 	@Override
 	public String toString() {
-		return "Carrito ID : " + id + ", Fecha : " + fecha + ", Cerrado : "
-				+ cerrado + ", Descuento : " + descuento + ", \nCliente : " + cliente
-				+ ", \nItemCarrito : \n" + lstItemCarrito + ", \nEntrega : " + entrega
-				+ ", ";
+		return "Carrito ID: " + id + "\nFecha: " + fecha + "\nCerrado: "
+				+ cerrado + "\nDescuento: " + descuento + "\nCliente: "+"\n" +cliente+""
+				+ "\nItemCarrito:\n" +lstItemCarrito+"\nEntrega: " +entrega
+				+ "";
 	}
 	
 /****************************  ITEMS CARRITO *******************************/
@@ -183,7 +183,7 @@ public class Carrito {
 		return subtotal;
 	}
 	
-	//Calcular Descuento según día
+	//Calcular Descuento segun dia
 	public double calcularDescuentoDia(int diaDescuento, double porcentaje){
 		double descuento = 0;
 		double total = this.calcularTotalCarrito();

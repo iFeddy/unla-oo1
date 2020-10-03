@@ -61,8 +61,8 @@ public class Articulo {
 
 	@Override
 	public String toString() {
-		return "ID Articulo : " + id + ", Nombre : " + nombre + ", Codigo de Barras : "
-				+ codBarras + ", Precio : " + precio + "\n";
+		return "\n-ID Articulo: " + id + " -Nombre: " + nombre + " -Codigo de Barras: "
+				+ codBarras + " -Precio: " + precio + "\n";
 	}
 	
 	// VALIDAR CODIGO DE BARRAS

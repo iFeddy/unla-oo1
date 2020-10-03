@@ -40,9 +40,9 @@ public class DiaRetiro {
 	}
 	@Override
 	public String toString() {
-		return "ID DiaRetiro : " + id + ", Dia Semana : " + diaSemana
-				+ ", Hora Desde : " + horaDesde + ", Hora Hasta : " + horaHasta
-				+ ", Intervalo : " + intervalo + ", ";
+		return "ID DiaRetiro: " + id + "-Dia Semana: " + diaSemana
+				+ "-Hora Desde: " + horaDesde + "-Hora Hasta: " + horaHasta
+				+ "-Intervalo: " + intervalo + ", ";
 	}
 	
 	
