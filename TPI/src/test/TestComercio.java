@@ -20,7 +20,7 @@ public class TestComercio {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-    	System.out.println("\nESCENARIO 2: VALIDANDO CUIT ");
+    	System.out.println("\nESCENARIO 2: GENERANDO COMERCIO , ARTICULOS , ITEMS  ");
     	try {
     		System.out.println("");
     		System.out.println("COMERCIO ");
@@ -77,8 +77,7 @@ public class TestComercio {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
-		//c.setCuit(20353242343L); // CUIT de la UNLA    
+		// -Version 3.0    
     }
 
 }

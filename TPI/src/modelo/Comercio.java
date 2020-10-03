@@ -297,7 +297,7 @@ public class Comercio extends Actor {
 	}
 
 	
-/******************  CARRITOS *******************************/
+/************************  CARRITOS *******************************/
 	
 	// TRAER CARRITO POR ID
 	public Carrito traerCarrito(int id) {
@@ -327,4 +327,5 @@ public class Comercio extends Actor {
 		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
 	}
 
+	
 }
