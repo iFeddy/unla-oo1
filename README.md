@@ -44,12 +44,12 @@ Casos de Uso:
 
 ## Construido con 🛠️
 
-*IDE: Eclipse IDE for Enterprise Java Developers https://www.eclipse.org/
-*UML: dia 0.97+git live.gnome.org/Dia
-*TP Grupal: 4 integrantes
-*Evaluación: La evaluación de TP es personal se consideran los aportes de cada integrante al
-*trabajo según cada informe y las defensas de cada uno de los integrantes en clase.
-*Defensas: En clase por grupos se exponen los avances del proyecto.
+* IDE: Eclipse IDE for Enterprise Java Developers https://www.eclipse.org/
+* UML: dia 0.97+git live.gnome.org/Dia
+* TP Grupal: 4 integrantes
+* Evaluación: La evaluación de TP es personal se consideran los aportes de cada integrante al
+* trabajo según cada informe y las defensas de cada uno de los integrantes en clase.
+* Defensas: En clase por grupos se exponen los avances del proyecto.
 
 ## Autores ✒️
 
