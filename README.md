@@ -1,11 +1,11 @@
-# Orientación a Objetos I - Trabajo Práctico - Integrador
+# Orientación a Objetos I - Trabajo Práctico Integrador
 
 Sistema de laboratorio para un Comercio: “Almacen Granate”, debe permitir resolver la siguiente
 funcionalidad:
-● Comprar digitalmente un carrito
-● Gestionar turnos de retiro de la compra
-● Gestionar entrega a domicilio
-● Gestionar ofertas
++ Comprar digitalmente un carrito
++ Gestionar turnos de retiro de la compra
++ Gestionar entrega a domicilio
++ Gestionar ofertas
 
 ## Comenzando 🚀
 
