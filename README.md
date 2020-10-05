@@ -1,4 +1,13 @@
-<h3 align="center">Trabajos Prácticos - Orientación a Objetos I</h3>
+# Orientación a Objetos I - Trabajo Práctico - Integrador: Sistema para un comercio “Almacen Granate”
+
+Sistema de laboratorio para un Comercio: “Almacen Granate”, debe permitir resolver la siguiente
+funcionalidad:
+● Comprar digitalmente un carrito
+● Gestionar turnos de retiro de la compra
+● Gestionar entrega a domicilio
+● Gestionar ofertas
+
+## Comenzando 🚀
 
 El sistema debe implementar la siguiente funcionalidad:
 
@@ -32,3 +41,25 @@ Casos de Uso:
 15) + totalAPagarCarrito() : double
 16) + setCosto(Ubicacion ubicacion, double costoFijo, double costoPorKm):
 17) + traerUbicacion() : Ubicacion
+
+## Construido con 🛠️
+
+IDE: Eclipse IDE for Enterprise Java Developers https://www.eclipse.org/
+UML: dia 0.97+git live.gnome.org/Dia
+TP Grupal: 4 integrantes
+Evaluación: La evaluación de TP es personal se consideran los aportes de cada integrante al
+trabajo según cada informe y las defensas de cada uno de los integrantes en clase.
+Defensas: En clase por grupos se exponen los avances del proyecto.
+
+## Autores ✒️
+
+Las siguientes personas contribuyeron con la generacion , codifiacion y documentacion del Trabajo. 
+
+* **Perez, Federico** - *Trabajo Inicial* - [federicoPerez](https://github.com/villanuevand)
+* **Piñeyro, Dario Nestor** - *Documentación* - [darioPiñeyro](#fulanito-de-tal)
+* **Sejas, Diego Alejandro** - *Documentación* - [DiegoSejas](#fulanito-de-tal)
+
+
+## Licencia 📄
+
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
