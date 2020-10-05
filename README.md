@@ -1,4 +1,4 @@
-# Orientación a Objetos I - Trabajo Práctico - Integrador: Sistema para un comercio “Almacen Granate”
+# Orientación a Objetos I - Trabajo Práctico - Integrador
 
 Sistema de laboratorio para un Comercio: “Almacen Granate”, debe permitir resolver la siguiente
 funcionalidad:
@@ -18,7 +18,7 @@ validar que el ingreso sea numérico.
 
 Casos de Uso:
 
-1) # validarIdentificadorUnico (long identificador) : boolean //valida DNI o CUIT según la
+1)   validarIdentificadorUnico (long identificador) : boolean //valida DNI o CUIT según la
      sub-clase 2/3
 2) + traerHoraRetiro (LocalDate fecha): LocalTime
 3) + generarTurnosLibres (LocalDate fecha) : Turno //retorna una lista de objetos Turno libres
@@ -36,7 +36,7 @@ Casos de Uso:
 12) + calcularDescuentoEfectivo (double porcentajeDescuentoEfectivo): double
 13) + calcularDescuentoCarrito (int diaDescuento, double porcentajeDescuento, double
       porcentajeDescuentoEfectivo) : //determina cual es el descuento mayor
-14) # setDescuento(double descuento): //es optativo definirlo protected si solo se setea por las
+14) - setDescuento(double descuento): //es optativo definirlo protected si solo se setea por las
       reglas de negocio de descuento
 15) + totalAPagarCarrito() : double
 16) + setCosto(Ubicacion ubicacion, double costoFijo, double costoPorKm):
