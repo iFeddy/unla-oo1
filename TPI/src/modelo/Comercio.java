@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -318,7 +319,6 @@ public class Comercio extends Actor {
 	List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
 		int id = 1;
 		Entrega entrega1 = null;
-
 		if (lstCarrito.size() > 0) {
 			Carrito ultimoId = lstCarrito.get(lstCarrito.size() - 1);
 			id = ultimoId.getId() + 1;
@@ -326,6 +326,46 @@ public class Comercio extends Actor {
 		
 		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
 	}
-
 	
+/********************  DIA RETIRO *******************************/	
+	// TRAER DIA RETIRO POR ID 	
+	public DiaRetiro traerDiaRetiroId(int id){
+		DiaRetiro diaretiro = null;
+		int i = 0;
+		while (diaretiro == null && i < lstDiaRetiro.size()){
+			DiaRetiro diareti = lstDiaRetiro.get(i);
+			if(diareti.getId()== id){
+				diaretiro = diareti; 
+			}
+			i++; 
+		}
+		return diaretiro;
+	}
+		
+	// TRAER DIA RETIRO POR DIA SEMANA 	
+	public DiaRetiro traerDiaRetiro(int diaSemana){
+		DiaRetiro diaretiro = null;
+		int i = 0;
+		while (diaretiro == null && i < lstDiaRetiro.size()){
+			DiaRetiro diareti = lstDiaRetiro.get(i);
+			if(diareti.getDiaSemana()== diaSemana){
+				diaretiro = diareti; 
+			}
+			i++; 
+		}
+		return diaretiro;
+	}
+	// AGREGAR DIA RETIRO
+	public boolean agregarDiaRetiro(int diaSemana , LocalTime HoraDesde , LocalTime HoraHasta , int intervalo)throws Exception{
+		int id = 1;
+		if (this.traerDiaRetiro(diaSemana)!= null) {
+			throw new Exception("Ya existe un dia de Retiro igual al ingresado ");
+		}
+			else if (lstDiaRetiro.size() > 0) {			
+				DiaRetiro ultimoId = lstDiaRetiro.get(lstDiaRetiro.size() - 1);
+				id = (ultimoId.getId() + 1); 
+			}
+		return lstDiaRetiro.add(new DiaRetiro(id, diaSemana, HoraDesde, HoraHasta,intervalo));
+	}
+			
 }

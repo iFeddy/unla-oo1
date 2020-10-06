@@ -1,6 +1,7 @@
 package test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import modelo.Carrito;
 import modelo.Cliente;
@@ -44,7 +45,7 @@ public class TestComercio {
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),1);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);
-			System.out.println("		"+carrito1.mostrarItem(carrito1));
+			System.out.println(carrito1.mostrarItem(carrito1));
 			
 			Carrito carrito2 = new Carrito();
 			carrito2.agregarItem(almacenGranate.traerArticulo(1),3);
@@ -52,7 +53,7 @@ public class TestComercio {
 			carrito2.agregarItem(almacenGranate.traerArticulo(3),1);
 			carrito2.agregarItem(almacenGranate.traerArticulo(3),2);			
 			
-			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito1), null);
+			almacenGranate.agregarCarrito(LocalDate.now(), false, 23D, cliente, carrito1.mostrarItem(carrito1), null);
 			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito2), null);
 			
     		//System.out.println(carrito1.mostrarItem(carrito1));
@@ -77,7 +78,21 @@ public class TestComercio {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		// -Version 3.0    
+    	
+    	System.out.println("\nESCENARIO 1: ");
+    	try {
+    		System.out.println("DIA DE RETIRO : ");
+    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5);
+    		almacenGranate.agregarDiaRetiro(1,LocalTime.of(8,0), LocalTime.of(18,0), 30); 
+    		almacenGranate.agregarDiaRetiro(7,LocalTime.of(8,0), LocalTime.of(18,0), 30);
+    		System.out.println(almacenGranate);
+			
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
+    	
+		// Ultima Version 3.0  
+    
     }
 
 }

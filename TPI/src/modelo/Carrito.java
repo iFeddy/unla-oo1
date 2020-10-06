@@ -72,8 +72,8 @@ public class Carrito {
 	}
 	@Override
 	public String toString() {
-		return "Carrito ID: " + id + "\nFecha: " + fecha + "\nCerrado: "
-				+ cerrado + "\nDescuento: " + descuento + "\nCliente: "+"\n" +cliente+""
+		return "Carrito ID: " + id + "\nFecha: " + fecha + "\nEstado: "
+				+ Funciones.ocupado(cerrado) + "\nDescuento: " + descuento + "\nCliente: " +cliente+""
 				+ "\nItemCarrito:\n" +lstItemCarrito+"\nEntrega: " +entrega
 				+ "";
 	}
