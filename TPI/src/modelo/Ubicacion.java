@@ -16,7 +16,7 @@ public class Ubicacion {
 
 	public void setLatitud(double latitud)throws Exception {
 		if(latitud < -90 || latitud > 90){
-			throw new Exception("Error: Objeto Ubicacion inválido, Latitud debe estar entre -90 y 90 grados");
+			throw new Exception("Error: Objeto Ubicacion invï¿½lido, Latitud debe estar entre -90 y 90 grados");
 		}
 		this.latitud = latitud;
 	}
@@ -27,7 +27,7 @@ public class Ubicacion {
 
 	public void setLongitud(double longitud) throws Exception{
 		if(longitud < -180 || longitud > 180){
-			throw new Exception("Error: Objeto Ubicacion inválido, Longitud debe estar entre -180 y 180 grados");
+			throw new Exception("Error: Objeto Ubicacion invï¿½lido, Longitud debe estar entre -180 y 180 grados");
 		}
 		this.longitud = longitud;
 	}

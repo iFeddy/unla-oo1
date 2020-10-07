@@ -63,10 +63,7 @@ public class Cliente extends Actor{
 
 	@Override
 	public String toString() {
-		return "Contacto : "+ super.contacto + " \nInformacion : \nApellido: " + apellido + ", Nombre: " + nombre
+		return "Contacto : "+ super.contacto + " \nInformaci\u00f3n : \nApellido: " + apellido + ", Nombre: " + nombre
 				+ ", DNI: " + dni + ", Sexo: " + sexo + " ";
 	}
-	
-	
-
 }

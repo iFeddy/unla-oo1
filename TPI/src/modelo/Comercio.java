@@ -33,16 +33,17 @@ public class Comercio extends Actor {
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.setLstCarrito(new ArrayList<Carrito>());
 	}
-	public Comercio(int id,Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
+
+	public Comercio(int id, Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
 			int diasDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
-		super(id,contacto);
+		super(id, contacto);
 		this.nombreComercio = nombreComercio;
 		this.setCuit(cuit);
 		this.costoFijo = costoFijo;
 		this.costoPorKm = costoPorKm;
 		this.diasDescuento = diasDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
-		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;		
+		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.setLstCarrito(new ArrayList<Carrito>());
@@ -167,14 +168,16 @@ public class Comercio extends Actor {
 
 	@Override
 	public String toString() {
-		return "Contacto  "+ super.contacto + " \nInformación  \nNombre: " + nombreComercio + "\nCuit: " + cuit + "\nCosto Fijo de envio: " +"$"+ costoFijo + "\nCosto Por Km: "
-				+"$"+ costoPorKm + "\nDia de Descuento: " + Funciones.diaSemana(diasDescuento) + " - Porcentaje de descuento : " + porcentajeDescuentoDia
-				+"%"+ "\nPorcentaje de descuento en Efectivo: " + porcentajeDescuentoEfectivo +"%"+"\n"+"\nDias de Retiro: " + lstDiaRetiro
-				+"\n"+ "\nArticulos: " + lstArticulo +"\n"+ "\nCarritos: " + lstCarrito + "";
+		return "Contacto  " + super.contacto + " \nInformaci\u00f3n  \nNombre: " + nombreComercio + "\nCuit: " + cuit
+				+ "\nCosto Fijo de envio: " + "$" + costoFijo + "\nCosto Por Km: " + "$" + costoPorKm
+				+ "\nDia de Descuento: " + Funciones.diaSemana(diasDescuento) + " - Porcentaje de descuento : "
+				+ porcentajeDescuentoDia + "%" + "\nPorcentaje de descuento en Efectivo: " + porcentajeDescuentoEfectivo
+				+ "%" + "\n" + "\nDias de Retiro: " + lstDiaRetiro + "\n" + "\nArticulos: " + lstArticulo + "\n"
+				+ "\nCarritos: " + lstCarrito + "";
 	}
 
-/******************  ARTICULOS  *******************************/
-	
+	/****************** ARTICULOS *******************************/
+
 	// TRAER ARTICULOS POR ID
 	public Articulo traerArticulo(int id) {
 		Articulo articulo = null;
@@ -186,7 +189,6 @@ public class Comercio extends Actor {
 			}
 			i++;
 		}
-
 		return articulo;
 	}
 
@@ -241,65 +243,61 @@ public class Comercio extends Actor {
 		Articulo articulo1 = new Articulo();
 		if (!(articulo1.isValidBarCodeEAN(codBarras))) {
 			throw new Exception("Codigo de Barras Articulo invalido! ");
+		} else if (this.traerArticulocodBarras(codBarras) != null) {
+			throw new Exception("Articulo existente , con el mismo codigo de Barras ");
+		} else if (lstArticulo.size() > 0) {
+			Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
+			id = (ultimoId.getId() + 1);
 		}
-		else if (this.traerArticulocodBarras(codBarras) != null) {
-				throw new Exception("Articulo existente , con el mismo codigo de Barras ");
-			}
-			else if (lstArticulo.size() > 0) {			
-				Articulo ultimoId = lstArticulo.get(lstArticulo.size() - 1);
-				id = (ultimoId.getId() + 1); 
-			}
 		return lstArticulo.add(new Articulo(id, nombre, codBarras, precio));
 	}
 
 	// MODIFICAR ARTICULO
-	public boolean modificarArticulo(int id ,String nombre ,String codigoBarras, double precio) throws Exception{		
-		boolean modificada = false;	
+	public boolean modificarArticulo(int id, String nombre, String codigoBarras, double precio) throws Exception {
+		boolean modificada = false;
 		int i = 0;
-		Articulo articulo1 = new Articulo();		
-		if(!(articulo1.isValidBarCodeEAN(codigoBarras))){
+		Articulo articulo1 = new Articulo();
+		if (!(articulo1.isValidBarCodeEAN(codigoBarras))) {
 			throw new Exception("Codigo de Barras del Articulo invalido! ");
-		}
-		else if(this.traerArticulo(id)== null){
+		} else if (this.traerArticulo(id) == null) {
 			throw new Exception("ID del Articulo Inexistente! ");
+		} else {
+			while (nombre != null && i < lstArticulo.size()) {
+				Articulo art = lstArticulo.get(i);
+				if (art.getId() == id) {
+					art.setNombre(nombre);
+					art.setPrecio(precio);
+					modificada = true;
+				}
+				i++;
 			}
-			else{
-				while (nombre != null && i < lstArticulo.size()) {
-					Articulo art = lstArticulo.get(i);
-					if(art.getId() == id){
-						art.setNombre(nombre);
-						art.setPrecio(precio);						
-						modificada = true; 
-					}					 
-					i++;
-				}		
-				System.out.println("Modificando nombre del Articulo por: " + nombre +", y precio actualizado a: $"+precio);
+			System.out
+					.println("Modificando nombre del Articulo por: " + nombre + ", y precio actualizado a: $" + precio);
 		}
 		return modificada;
 	}
 
 	// ELIMINAR ARTICULO
-	public boolean eliminarArticulo(int id) throws Exception{
+	public boolean eliminarArticulo(int id) throws Exception {
 		boolean eliminado = false;
-		int i= 0;
-		if(this.traerArticulo(id)== null){
+		int i = 0;
+		if (this.traerArticulo(id) == null) {
 			throw new Exception("ID de Articulo Inexistente! ");
 		}
 		while (lstArticulo != null && i < lstArticulo.size()) {
 			Articulo art = lstArticulo.get(i);
-			if(art.getId() == id){
+			if (art.getId() == id) {
 				lstArticulo.remove(i);
-				 eliminado = true; 
-			}					 
-				 i++;
-		 }		
-		System.out.println("ID: " + id );
+				eliminado = true;
+			}
+			i++;
+		}
+		System.out.println("ID: " + id);
 		return eliminado;
 	}
 
-	
-/************************  CARRITOS *******************************/
-	
+	/************************ CARRITOS *******************************/
+
 	// TRAER CARRITO POR ID
 	public Carrito traerCarrito(int id) {
 		Carrito carrito = null;
@@ -316,57 +314,110 @@ public class Comercio extends Actor {
 
 	// AGREGAR CARRITO
 	public boolean agregarCarrito(LocalDate fecha, boolean cerrado, double descuento, Cliente cliente,
-	List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
+			List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
 		int id = 1;
 		Entrega entrega1 = null;
 		if (lstCarrito.size() > 0) {
 			Carrito ultimoId = lstCarrito.get(lstCarrito.size() - 1);
 			id = ultimoId.getId() + 1;
 		}
-		
+
 		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
 	}
-	
-/********************  DIA RETIRO *******************************/	
-	// TRAER DIA RETIRO POR ID 	
-	public DiaRetiro traerDiaRetiroId(int id){
+
+	/******************** DIA RETIRO *******************************/
+	// TRAER DIA RETIRO POR ID
+	public DiaRetiro traerDiaRetiroId(int id) {
 		DiaRetiro diaretiro = null;
 		int i = 0;
-		while (diaretiro == null && i < lstDiaRetiro.size()){
+		while (diaretiro == null && i < lstDiaRetiro.size()) {
 			DiaRetiro diareti = lstDiaRetiro.get(i);
-			if(diareti.getId()== id){
-				diaretiro = diareti; 
+			if (diareti.getId() == id) {
+				diaretiro = diareti;
 			}
-			i++; 
+			i++;
 		}
 		return diaretiro;
 	}
-		
-	// TRAER DIA RETIRO POR DIA SEMANA 	
-	public DiaRetiro traerDiaRetiro(int diaSemana){
+
+	// TRAER DIA RETIRO POR DIA SEMANA
+	public DiaRetiro traerDiaRetiro(int diaSemana) {
 		DiaRetiro diaretiro = null;
 		int i = 0;
-		while (diaretiro == null && i < lstDiaRetiro.size()){
+		while (diaretiro == null && i < lstDiaRetiro.size()) {
 			DiaRetiro diareti = lstDiaRetiro.get(i);
-			if(diareti.getDiaSemana()== diaSemana){
-				diaretiro = diareti; 
+			if (diareti.getDiaSemana() == diaSemana) {
+				diaretiro = diareti;
 			}
-			i++; 
+			i++;
 		}
 		return diaretiro;
 	}
-	
+
 	// AGREGAR DIA RETIRO
-	public boolean agregarDiaRetiro(int diaSemana , LocalTime HoraDesde , LocalTime HoraHasta , int intervalo)throws Exception{
+	public boolean agregarDiaRetiro(int diaSemana, LocalTime HoraDesde, LocalTime HoraHasta, int intervalo)
+			throws Exception {
 		int id = 1;
-		if (this.traerDiaRetiro(diaSemana)!= null) {
+		if (this.traerDiaRetiro(diaSemana) != null) {
 			throw new Exception("Ya existe un dia de Retiro igual al ingresado ");
+		} else if (lstDiaRetiro.size() > 0) {
+			DiaRetiro ultimoId = lstDiaRetiro.get(lstDiaRetiro.size() - 1);
+			id = (ultimoId.getId() + 1);
 		}
-			else if (lstDiaRetiro.size() > 0) {			
-				DiaRetiro ultimoId = lstDiaRetiro.get(lstDiaRetiro.size() - 1);
-				id = (ultimoId.getId() + 1); 
-			}
-		return lstDiaRetiro.add(new DiaRetiro(id, diaSemana, HoraDesde, HoraHasta,intervalo));
+		return lstDiaRetiro.add(new DiaRetiro(id, diaSemana, HoraDesde, HoraHasta, intervalo));
 	}
-			
+
+	// TURNOS
+	public List<Turno> generarTurnosLibres(LocalDate fecha) throws Exception {
+
+		List<Turno> agenda = new ArrayList<Turno>();
+
+		int index = buscarPosicionDiaRetiro(fecha);
+		LocalTime hora = lstDiaRetiro.get(index).getHoraDesde();
+		
+		//Mientras la hora sea antes
+		while (hora.isBefore(lstDiaRetiro.get(index).getHoraHasta())) {
+			if (!buscarOcupado(hora)) {
+				//Agregar Turno Vacio
+				agenda.add(new Turno(fecha, hora, false));
+			}
+			//Buscar que no este ocupado el turno	
+			hora = hora.plusMinutes(lstDiaRetiro.get(index).getIntervalo());
+		}
+		return agenda;
+	}
+
+	private int buscarPosicionDiaRetiro(LocalDate fecha) throws Exception {
+		int index = -1;
+		int i = 0;
+		while(i < lstDiaRetiro.size() && index == -1) {
+			if (fecha.getDayOfWeek().getValue() == lstDiaRetiro.get(i).getDiaSemana()) {
+				index = i;
+			}
+			i++;
+		}
+		if (index == -1){
+			throw new Exception("[Error] No se realizan entregas en la fecha ingresada");
+		}		
+
+		return index;
+	}
+
+	private boolean buscarOcupado(LocalTime hora) {
+		boolean ocupado = false;
+		int i = 0;
+		if (lstCarrito != null) {
+			while((i < lstCarrito.size())&&(!ocupado)) {// busquemos si el turno esta asignado a una entrega
+				Entrega entrega = lstCarrito.get(i).getEntrega();
+				if (entrega instanceof RetiroLocal) {// si la entrega es retiro local
+					if (hora == ((RetiroLocal) entrega).getHoraEntrega())// casteamos para obtener la fecha e igualarla
+																			// con hora
+						ocupado = true;
+				}
+				i++;
+			}
+		}
+		return ocupado;
+	}
+
 }
