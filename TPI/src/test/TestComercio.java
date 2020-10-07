@@ -15,7 +15,9 @@ public class TestComercio {
     	System.out.println("ESCENARIO 1: ");
     	try {
     		System.out.println("COMERCIO VALIDANDO CUIT FORZANDO EXCEPCION ");
-    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5);
+    		Ubicacion ubicacionComercio = new Ubicacion(30,20);
+			Contacto contactoComercio = new Contacto("AlmacenGranate@gmail.com", "+5491122334455", ubicacionComercio);			
+    		Comercio almacenGranate = new Comercio(0,contactoComercio,"Almacen Granate", 30353242343L, 20, 10, 3,10, 5);
     		System.out.println(almacenGranate);
 			
 		} catch (Exception e) {
@@ -25,7 +27,12 @@ public class TestComercio {
     	try {
     		System.out.println("");
     		System.out.println("COMERCIO ");
-    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5);
+    		Ubicacion ubicacion = new Ubicacion(30,20);
+			Contacto contacto = new Contacto("AlmacenGranate@gmail.com", "+5491122334455", ubicacion);	
+    		Comercio almacenGranate = new Comercio(1,contacto,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5);
+    		
+    		almacenGranate.agregarDiaRetiro(1,LocalTime.of(8,0), LocalTime.of(9,0), 15); 
+    		almacenGranate.agregarDiaRetiro(3,LocalTime.of(8,0), LocalTime.of(9,0), 15);
     		
     		System.out.println(almacenGranate);    		
     		System.out.println("");
@@ -36,9 +43,9 @@ public class TestComercio {
     		almacenGranate.agregarArticulo("Galletitas Pepas", "4444444444444",50);
     		System.out.println(almacenGranate.getLstArticulo());
     		
-    		Ubicacion ubicacion = new Ubicacion(30,20);
-			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
-			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 30123456, 'M');
+    		Ubicacion ubicacionCliente = new Ubicacion(30,20);
+			Contacto contactoCliente = new Contacto("email@gmail.com", "+5491122334455", ubicacionCliente);
+			Cliente cliente = new Cliente(0, contactoCliente, "Perez", "Federico", 30123456, 'M');
 			System.out.println("AGREGANDO ITEMS A CARRITO: ");
 			Carrito carrito1 = new Carrito();
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
@@ -75,18 +82,6 @@ public class TestComercio {
 			System.out.print("Total Descuento Efecivo: ");
 			System.out.println(carrito2.calcularDescuentoDia(30));
 
-		} catch (Exception e) {
-			System.out.println("Excepcion: " + e.getMessage());
-		}
-    	
-    	System.out.println("\nESCENARIO 1: ");
-    	try {
-    		System.out.println("DIA DE RETIRO : ");
-    		Comercio almacenGranate = new Comercio(1,"Almacen Granate", 20353242343L, 20, 10, 3,10, 5);
-    		almacenGranate.agregarDiaRetiro(1,LocalTime.of(8,0), LocalTime.of(18,0), 30); 
-    		almacenGranate.agregarDiaRetiro(7,LocalTime.of(8,0), LocalTime.of(18,0), 30);
-    		System.out.println(almacenGranate);
-			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}

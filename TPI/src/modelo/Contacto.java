@@ -59,7 +59,7 @@ public class Contacto {
 	
 	@Override
 	public String toString() {
-		return "Email: " + email + " - Tel. Celular: " + celular
+		return "\nEmail: " + email + " - Tel. Celular: " + celular
 				+ " - Ubicacion: " + ubicacion + " ";
 	}
 	

@@ -60,9 +60,8 @@ public class Articulo {
 	}
 
 	@Override
-	public String toString() {
-		return "\nID Articulo: " + id + " - Nombre: " + nombre + " - Codigo de Barras: "
-				+ codBarras + " - Precio: " + precio + "";
+	public String toString() {		
+		return "\n " + id + "\t   " + nombre + "   \t       " + codBarras + "\t       " + precio + "";
 	}
 	
 	// VALIDAR CODIGO DE BARRAS

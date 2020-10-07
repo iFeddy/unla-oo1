@@ -72,7 +72,7 @@ public class Carrito {
 	}
 	@Override
 	public String toString() {
-		return "Carrito ID: " + id + "\nFecha: " + fecha + "\nEstado: "
+		return "Carrito id: " + id + "\nFecha: " + fecha + "\nEstado: "
 				+ Funciones.ocupado(cerrado) + "\nDescuento: " + descuento + "\nCliente: " +cliente+""
 				+ "\nItemCarrito:\n" +lstItemCarrito+"\nEntrega: " +entrega
 				+ "";
@@ -123,7 +123,7 @@ public class Carrito {
  	// MMOSTRAR ITEM
  	public List<ItemCarrito> mostrarItem(Carrito carrito){
  		List<ItemCarrito> mostrar = new ArrayList<ItemCarrito>();
- 		for(ItemCarrito p : carrito.getLstItemCarrito()){
+ 		for(ItemCarrito p : carrito.getLstItemCarrito()){ 			
  			mostrar.add(p);
  		}
  		return mostrar;

@@ -33,9 +33,9 @@ public class Comercio extends Actor {
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.setLstCarrito(new ArrayList<Carrito>());
 	}
-	public Comercio(int id, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
+	public Comercio(int id,Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
 			int diasDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
-		super(id);
+		super(id,contacto);
 		this.nombreComercio = nombreComercio;
 		this.setCuit(cuit);
 		this.costoFijo = costoFijo;
@@ -167,10 +167,10 @@ public class Comercio extends Actor {
 
 	@Override
 	public String toString() {
-		return "Comercio: " + nombreComercio + "\nCUIT: " + cuit + "\nCosto Fijo: " + costoFijo + "\nCosto PorKm : "
-				+ costoPorKm + "\nDia de Descuento: " + diasDescuento + "\n% Descuento Dia: " + porcentajeDescuentoDia
-				+ "\n% Descuento Efectivo:" + porcentajeDescuentoEfectivo + "\nDia Retiro: " + lstDiaRetiro
-				+ "\nArticulos: " + lstArticulo + "\nCarritos: " + lstCarrito + "";
+		return "Contacto  "+ super.contacto + " \nInformación  \nNombre: " + nombreComercio + "\nCuit: " + cuit + "\nCosto Fijo de envio: " +"$"+ costoFijo + "\nCosto Por Km: "
+				+"$"+ costoPorKm + "\nDia de Descuento: " + Funciones.diaSemana(diasDescuento) + " - Porcentaje de descuento : " + porcentajeDescuentoDia
+				+"%"+ "\nPorcentaje de descuento en Efectivo: " + porcentajeDescuentoEfectivo +"%"+"\n"+"\nDias de Retiro: " + lstDiaRetiro
+				+"\n"+ "\nArticulos: " + lstArticulo +"\n"+ "\nCarritos: " + lstCarrito + "";
 	}
 
 /******************  ARTICULOS  *******************************/
@@ -355,6 +355,7 @@ public class Comercio extends Actor {
 		}
 		return diaretiro;
 	}
+	
 	// AGREGAR DIA RETIRO
 	public boolean agregarDiaRetiro(int diaSemana , LocalTime HoraDesde , LocalTime HoraHasta , int intervalo)throws Exception{
 		int id = 1;

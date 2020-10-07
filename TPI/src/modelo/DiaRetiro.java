@@ -52,7 +52,7 @@ public class DiaRetiro {
 	}
 	@Override
 	public String toString() {
-		return "\nID DiaRetiro: " + id + " - Dia Semana: " + Funciones.diaSemana(diaSemana)
+		return "\nDiaRetiro id: " + id + " - Dia Semana: " + Funciones.diaSemana(diaSemana)
 				+ " - Hora Desde: " + horaDesde + " - Hora Hasta: " + horaHasta
 				+ " - Intervalo: " + intervalo + " ";
 	}

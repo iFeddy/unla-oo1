@@ -8,8 +8,7 @@ public class Turno {
 	private LocalTime hora;
 	private boolean ocupado;
 	
-	public Turno(LocalDate dia, LocalTime hora, boolean ocupado) {
-		super();
+	public Turno(LocalDate dia, LocalTime hora, boolean ocupado) {		
 		this.dia = dia;
 		this.hora = hora;
 		this.ocupado = ocupado;
@@ -41,7 +40,7 @@ public class Turno {
 
 	@Override
 	public String toString() {
-		return "Dia:" + dia + "-Hora:" + hora + "-Ocupado :" + ocupado
+		return "Dia:" + dia + " - Hora:" + hora + " - Ocupado :" + ocupado
 				+ " ";
 	}
 	
