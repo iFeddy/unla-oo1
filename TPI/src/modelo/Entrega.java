@@ -40,7 +40,7 @@ public abstract class Entrega {
 
 	@Override
 	public String toString() {
-		return "ID Entrega: " + id + " -Fecha: " + fecha + " -Efectivo: "
+		return "ID Entrega: " + id + " - Fecha: " + fecha + " - Efectivo: "
 				+ efectivo + " ";
 	}
 	

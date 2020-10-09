@@ -8,9 +8,10 @@ public class TestAlmacen {
 	public static void main(String[] args) {
 
 		Comercio almacenGranate = new Comercio();
-		
+
 		System.out.println("ESCENARIO 1: AGREGANDO ARTICULOS SIN FORZAR EXCEPCION");
 		try {
+			
 			System.out.println("LISTA DE ARTICULOS : ");
 			almacenGranate.agregarArticulo("Primer Producto", "1234567876788", 50);
 			almacenGranate.agregarArticulo("Segundo Producto", "5678987654322", 40);

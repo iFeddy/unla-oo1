@@ -28,7 +28,14 @@ public class ItemCarrito {
 
 	@Override
 	public String toString() {
-		return "" + articulo + " - Cantidad: " + cantidad + "";
+		return "" + articulo + "\t       " + cantidad + " \t      "+ calcularSubTotalItem() +"";
 	}
+	
+	//SUB TOTAL POR CADA ITEM DEL CARRITO
+	public double calcularSubTotalItem() {
+		double subTotal = articulo.getPrecio() * cantidad;
+		return subTotal;
+	}
+	
 	
 }

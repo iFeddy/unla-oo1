@@ -1,33 +1,48 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Carrito {
 	private int id;
 	private LocalDate fecha;
+	private LocalTime hora;
 	private boolean cerrado;
 	private double descuento;
 	private Cliente cliente;
 	private List<ItemCarrito> lstItemCarrito;
 	private Entrega entrega;
 
-	public Carrito(int id, LocalDate fecha, boolean cerrado, double descuento, Cliente cliente,
-			List<ItemCarrito> lstItemCarrito, Entrega entrega) {
+	public Carrito(int id, LocalDate fecha,LocalTime hora, boolean cerrado, double descuento, Cliente cliente, List<ItemCarrito> lstItemCarrito, Entrega entrega) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
+		this.hora = hora;
+		this.cerrado = cerrado;
+		this.descuento = descuento;
+		this.cliente = cliente;
+		this.lstItemCarrito= new ArrayList<ItemCarrito>();
+		this.setEntrega(entrega);
+	}
+	
+	//Constructor sobrecargado sin Entrega entrega
+	public Carrito(int id, LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente,List<ItemCarrito> lstItemCarrito) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.hora = hora;
 		this.cerrado = cerrado;
 		this.descuento = descuento;
 		this.cliente = cliente;
 		this.lstItemCarrito = lstItemCarrito;
-		this.entrega = entrega;
 	}
-
-	public Carrito() {
+	
+	public Carrito(){
 		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
+
 
 	public int getId() {
 		return id;
@@ -43,6 +58,13 @@ public class Carrito {
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+	
+	public LocalTime getHora() {
+		return hora;
+	}
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
 	}
 
 	public boolean isCerrado() {
@@ -87,9 +109,12 @@ public class Carrito {
 
 	@Override
 	public String toString() {
-		return "Carrito id: " + id + "\nFecha: " + fecha + "\nEstado: " + Funciones.ocupado(cerrado) + "\nDescuento: "
-				+ descuento + "\nCliente: " + cliente + "" + "\nItemCarrito:\n" + lstItemCarrito + "\nEntrega: "
+		return "Carrito ID: " + id + " \t   Fecha: " + fecha + " " + hora +"\nCliente: " + cliente + "" + "\nItemCarrito:\n" + lstItemCarrito 
 				+ entrega + "";
+	}
+	
+	public boolean equals(Carrito carrito) {
+		return (id==carrito.getId());
 	}
 
 	/**************************** ITEMS CARRITO *******************************/
@@ -139,7 +164,7 @@ public class Carrito {
 
 	// MOSTRAR ITEM
 	public List<ItemCarrito> mostrarItem(Carrito carrito) {
-		List<ItemCarrito> mostrar = new ArrayList<ItemCarrito>();
+		List<ItemCarrito> mostrar = new ArrayList<ItemCarrito>();		
 		for (ItemCarrito p : carrito.getLstItemCarrito()) {
 			mostrar.add(p);
 		}
@@ -175,6 +200,7 @@ public class Carrito {
 		return eliminado;
 	}
 
+
 	// CALCULA TOTAL DEL CARRITO SIN ENVIO
 	public double calcularTotalCarrito() {
 		double total = 0;
@@ -209,7 +235,7 @@ public class Carrito {
 	}
 
 	// Calcular Descuento Efectivo
-	public double calcularDescuentoDia(double porcentajeDescuentoEfectivo) {
+	public double calcularDescuentoEfectivo(double porcentajeDescuentoEfectivo) {
 		double descuento = 0;
 		double total = this.calcularTotalCarrito();
 
@@ -217,4 +243,23 @@ public class Carrito {
 
 		return descuento;
 	}
+	
+	//Determino cual descuento es mas efectivo, si por dia o efectivo
+	public void calcularDescuentoCarrito(int diaDescuento,double porcentajeDescuentoDia, double porcentajeDescuentoEfectivo) {
+		double efectivo= calcularDescuentoEfectivo(porcentajeDescuentoEfectivo);
+		double dia= calcularDescuentoDia(diaDescuento,porcentajeDescuentoDia);
+		double descuentoMayor=0.0;
+		if(efectivo>dia) {
+			descuentoMayor=efectivo;
+		}
+		else {
+			descuentoMayor=dia;
+		}
+		setDescuento(descuentoMayor);
+	}
+	
+	//Total a pagar pero ya con el descuento
+		public double totalAPagarCarrito() {
+			return calcularTotalCarrito() - descuento;
+		}
 }

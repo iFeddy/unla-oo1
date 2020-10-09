@@ -40,7 +40,7 @@ public class Turno {
 
 	@Override
 	public String toString() {
-		return "Dia:" + dia + " - Hora:" + hora + " - Ocupado :" + ocupado
+		return "\nDia:" + dia + " - Hora:" + hora + " - Estado :" + Funciones.ocupado(ocupado)
 				+ " ";
 	}
 	

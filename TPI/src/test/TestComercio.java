@@ -46,24 +46,25 @@ public class TestComercio {
     		Ubicacion ubicacionCliente = new Ubicacion(30,20);
 			Contacto contactoCliente = new Contacto("email@gmail.com", "+5491122334455", ubicacionCliente);
 			Cliente cliente = new Cliente(0, contactoCliente, "Perez", "Federico", 30123456, 'M');
-			System.out.println("AGREGANDO ITEMS A CARRITO: ");
+			//System.out.println("AGREGANDO ITEMS A CARRITO: ");
 			Carrito carrito1 = new Carrito();
 			carrito1.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito1.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),1);
 			carrito1.agregarItem(almacenGranate.traerArticulo(3),2);
-			System.out.println(carrito1.mostrarItem(carrito1));
+			//System.out.println(carrito1.mostrarItem(carrito1));
 			
 			Carrito carrito2 = new Carrito();
 			carrito2.agregarItem(almacenGranate.traerArticulo(1),3);
 			carrito2.agregarItem(almacenGranate.traerArticulo(2),2);
 			carrito2.agregarItem(almacenGranate.traerArticulo(3),1);
-			carrito2.agregarItem(almacenGranate.traerArticulo(3),2);			
+			carrito2.agregarItem(almacenGranate.traerArticulo(4),2);			
 			
-			almacenGranate.agregarCarrito(LocalDate.now(), false, 23D, cliente, carrito1.mostrarItem(carrito1), null);
-			almacenGranate.agregarCarrito(LocalDate.now(), true, 23D, cliente, carrito1.mostrarItem(carrito2), null);
+			almacenGranate.agregarCarrito(LocalDate.now(),LocalTime.now(), false, 23D, cliente, carrito1.mostrarItem(carrito1));
+			almacenGranate.agregarCarrito(LocalDate.now(),LocalTime.now(), false, 23D, cliente, carrito2.mostrarItem(carrito2));
 			
     		//System.out.println(carrito1.mostrarItem(carrito1));
+    		//System.out.println(carrito2.mostrarItem(carrito2));
     		System.out.println("");
     		System.out.println("CARRITO: ");
 			System.out.println(almacenGranate.traerCarrito(1));
@@ -80,7 +81,7 @@ public class TestComercio {
 
 			//Descuento Efectivo
 			System.out.print("Total Descuento Efecivo: ");
-			System.out.println(carrito2.calcularDescuentoDia(30));
+			System.out.println(carrito2.calcularDescuentoEfectivo(almacenGranate.getPorcentajeDescuentoEfectivo()));
 
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());

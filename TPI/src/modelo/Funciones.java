@@ -79,9 +79,9 @@ public class Funciones {
     public static String ocupado(boolean cerrado){
     	String ocupado = null;
     	if(cerrado == true){
-    		ocupado = "Cerrado";
+    		ocupado = " OCUPADO";
     	}else
-    		ocupado = "Abierto";  
+    		ocupado = " LIBRE";  
     	 return ocupado;
     }
        

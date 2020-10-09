@@ -6,8 +6,7 @@ import java.time.LocalTime;
 public class RetiroLocal extends Entrega {
 	protected LocalTime horaEntrega;
 
-	public RetiroLocal(int id, LocalDate fecha, boolean efectivo,
-			LocalTime horaEntrega) {
+	public RetiroLocal(int id, LocalDate fecha, boolean efectivo,LocalTime horaEntrega) {
 		super(id, fecha, efectivo);
 		this.horaEntrega = horaEntrega;
 	}

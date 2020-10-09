@@ -29,11 +29,15 @@ public class Comercio extends Actor {
 		this.diasDescuento = diasDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
-		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
-		this.lstArticulo = new ArrayList<Articulo>();
-		this.setLstCarrito(new ArrayList<Carrito>());
+		this.lstDiaRetiro = lstDiaRetiro;
+		this.lstArticulo = lstArticulo;
+		this.lstCarrito = lstCarrito;
+		//this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		//this.lstArticulo = new ArrayList<Articulo>();
+		//this.setLstCarrito(new ArrayList<Carrito>());
 	}
 
+	// Constructor sobrecargado
 	public Comercio(int id, Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
 			int diasDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
 		super(id, contacto);
@@ -46,6 +50,7 @@ public class Comercio extends Actor {
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
 		this.lstArticulo = new ArrayList<Articulo>();
+		//this.lstCarrito = new ArrayList<Carrito>();	
 		this.setLstCarrito(new ArrayList<Carrito>());
 	}
 
@@ -122,6 +127,7 @@ public class Comercio extends Actor {
 	}
 
 	public List<Articulo> getLstArticulo() {
+		System.out.println("ID         NOMBRE                      COD.BARRAS              PRECIO ");
 		return lstArticulo;
 	}
 
@@ -135,6 +141,9 @@ public class Comercio extends Actor {
 
 	public void setLstCarrito(List<Carrito> lstCarrito) {
 		this.lstCarrito = lstCarrito;
+	}
+	public void addLstCarrito(Carrito carrito) {
+		lstCarrito.add(carrito);
 	}
 
 	// VALIDAR CUIT
@@ -176,7 +185,7 @@ public class Comercio extends Actor {
 				+ "\nCarritos: " + lstCarrito + "";
 	}
 
-	/****************** ARTICULOS *******************************/
+/****************** ARTICULOS *******************************/
 
 	// TRAER ARTICULOS POR ID
 	public Articulo traerArticulo(int id) {
@@ -296,7 +305,7 @@ public class Comercio extends Actor {
 		return eliminado;
 	}
 
-	/************************ CARRITOS *******************************/
+/************************ CARRITOS *******************************/
 
 	// TRAER CARRITO POR ID
 	public Carrito traerCarrito(int id) {
@@ -313,19 +322,16 @@ public class Comercio extends Actor {
 	}
 
 	// AGREGAR CARRITO
-	public boolean agregarCarrito(LocalDate fecha, boolean cerrado, double descuento, Cliente cliente,
-			List<ItemCarrito> lstItemCarrito, Entrega entrega) throws Exception {
+	public boolean agregarCarrito(LocalDate fecha,LocalTime hora, boolean cerrado, double descuento, Cliente cliente,List<ItemCarrito> lstItemCarrito) throws Exception {
 		int id = 1;
-		Entrega entrega1 = null;
 		if (lstCarrito.size() > 0) {
 			Carrito ultimoId = lstCarrito.get(lstCarrito.size() - 1);
 			id = ultimoId.getId() + 1;
 		}
-
-		return lstCarrito.add(new Carrito(id, fecha, cerrado, descuento, cliente, lstItemCarrito, entrega1));
+		return lstCarrito.add(new Carrito(id, fecha, hora,cerrado, descuento, cliente, lstItemCarrito));
 	}
 
-	/******************** DIA RETIRO *******************************/
+/******************** DIA RETIRO *******************************/
 	// TRAER DIA RETIRO POR ID
 	public DiaRetiro traerDiaRetiroId(int id) {
 		DiaRetiro diaretiro = null;
@@ -367,14 +373,51 @@ public class Comercio extends Actor {
 		return lstDiaRetiro.add(new DiaRetiro(id, diaSemana, HoraDesde, HoraHasta, intervalo));
 	}
 
+	public LocalTime traerHoraRetiro(LocalDate fecha) throws Exception {
+		int indiceLista = buscarIndiceDiaRetiro(fecha);
+		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
+		boolean turnoLibre = false;
+		while (!turnoLibre) {
+			if (!buscarOcupado(hora))
+				turnoLibre = true; // si esta libre salimos del bucle
+			else
+				hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());// si esta ocupado sumamos el																					 //intervalo del diaRetiro
+		}
+		return hora;
+	}
+	
+	public List<Turno> generarAgenda(LocalDate fecha) throws Exception {// retorna una lista de objetos Turno indicando si esta ocupado o libre
+		List<Turno> agenda = new ArrayList<Turno>();
+		int indiceLista = buscarIndiceDiaRetiro(fecha);
+		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
+
+		while (hora.isBefore(lstDiaRetiro.get(indiceLista).getHoraHasta())) {
+		agenda.add(new Turno(fecha, hora, buscarOcupado(hora))); 
+			// agrego a la lista agenda
+		hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());
+			}
+	return agenda;
+	}
+	private int buscarIndiceDiaRetiro(LocalDate fecha) throws Exception {
+		int indiceLista = -1;
+		int i = 0;
+		while((i < lstDiaRetiro.size())&&(indiceLista==-1)) {
+			if (fecha.getDayOfWeek().getValue() == lstDiaRetiro.get(i).getDiaSemana()) {// si coincide con diaSemana
+				indiceLista = i;
+			}
+			i++;
+		}
+		if (indiceLista == -1)
+			throw new Exception("En la fecha ingresada no se realizan entregas: " + fecha);
+
+		return indiceLista;
+	}
+
 	// TURNOS
 	public List<Turno> generarTurnosLibres(LocalDate fecha) throws Exception {
-
 		List<Turno> agenda = new ArrayList<Turno>();
-
 		int index = buscarPosicionDiaRetiro(fecha);
-		LocalTime hora = lstDiaRetiro.get(index).getHoraDesde();
-		
+		LocalTime hora = lstDiaRetiro.get(index).getHoraDesde();		
 		//Mientras la hora sea antes
 		while (hora.isBefore(lstDiaRetiro.get(index).getHoraHasta())) {
 			if (!buscarOcupado(hora)) {
@@ -383,6 +426,20 @@ public class Comercio extends Actor {
 			}
 			//Buscar que no este ocupado el turno	
 			hora = hora.plusMinutes(lstDiaRetiro.get(index).getIntervalo());
+		}
+		return agenda;
+	}
+	
+	public List<Turno> traerTurnosOcupados(LocalDate fecha) throws Exception {// retorna una lista de objetos Turno
+		List<Turno> agenda = new ArrayList<Turno>();
+		int indiceLista = buscarIndiceDiaRetiro(fecha);
+		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
+
+		while (hora.isBefore(lstDiaRetiro.get(indiceLista).getHoraHasta())) {// mientras hora sea antes de horaHasta
+			if (buscarOcupado(hora)) {// si el turno SI esta ocupado
+				agenda.add(new Turno(fecha, hora, true));// creo un turno disponible y lo agrego a la agenda
+			}
+			hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());// sumamos el intervalo
 		}
 		return agenda;
 	}
@@ -410,8 +467,7 @@ public class Comercio extends Actor {
 			while((i < lstCarrito.size())&&(!ocupado)) {// busquemos si el turno esta asignado a una entrega
 				Entrega entrega = lstCarrito.get(i).getEntrega();
 				if (entrega instanceof RetiroLocal) {// si la entrega es retiro local
-					if (hora == ((RetiroLocal) entrega).getHoraEntrega())// casteamos para obtener la fecha e igualarla
-																			// con hora
+					if (hora == ((RetiroLocal) entrega).getHoraEntrega())
 						ocupado = true;
 				}
 				i++;
@@ -419,5 +475,5 @@ public class Comercio extends Actor {
 		}
 		return ocupado;
 	}
-
+	
 }
