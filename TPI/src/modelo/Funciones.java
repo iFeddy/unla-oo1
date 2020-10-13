@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,19 +59,19 @@ public class Funciones {
     public static String diaSemana (int dia){
 		String Valor_dia = null;			
 		if (dia== 1) {
-			Valor_dia = "Domingo";
-		} else if (dia== 2) {
 			Valor_dia = "Lunes";
-		} else if (dia == 3) {
+		} else if (dia== 2) {
 			Valor_dia = "Martes";
-		} else if (dia== 4) {
+		} else if (dia == 3) {
 			Valor_dia = "Miercoles";
-		} else if (dia== 5) {
+		} else if (dia== 4) {
 			Valor_dia = "Jueves";
-		} else if (dia== 6) {
+		} else if (dia== 5) {
 			Valor_dia = "Viernes";
-		} else if (dia== 7) {
+		} else if (dia== 6) {
 			Valor_dia = "Sabado";
+		} else if (dia== 7) {
+			Valor_dia = "Domingo";
 		} else
 			Valor_dia = "Dia Incorrecto";
 		return Valor_dia;
@@ -83,6 +84,14 @@ public class Funciones {
     	}else
     		ocupado = " LIBRE";  
     	 return ocupado;
+    }
+    
+    public static String fechaCadena(LocalDate fecha){
+    
+    	String MES[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+	    String DIA[] = {"Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
+	    String cadena = "" + DIA[fecha.getDayOfWeek().getValue()] + " " + fecha.getDayOfMonth() + " "+MES[fecha.getMonthValue()-1]+" del " + fecha.getYear();
+    	return cadena;
     }
        
 }

@@ -109,7 +109,7 @@ public class Carrito {
 
 	@Override
 	public String toString() {
-		return "Carrito ID: " + id + " \t   Fecha: " + fecha + " " + hora +"\nCliente: " + cliente + "" + "\nItemCarrito:\n" + lstItemCarrito 
+		return "Carrito ID: " + id + " \t   Fecha: " + Funciones.fechaCadena(fecha) + " " + hora +"\nCliente: " + cliente + "" + "\nItemCarrito:\n" + lstItemCarrito 
 				+ entrega + "";
 	}
 	
@@ -228,7 +228,7 @@ public class Carrito {
 	public double calcularDescuentoDia(int diaDescuento, double porcentaje) {
 		double descuento = 0;
 		double total = this.calcularTotalCarrito();
-		if (fecha.getDayOfWeek().getValue() == diaDescuento) {
+		if (fecha.getDayOfWeek().getValue()== diaDescuento) {
 			descuento = (total * porcentaje) / 100;
 		}
 		return descuento;
@@ -245,7 +245,7 @@ public class Carrito {
 	}
 	
 	//Determino cual descuento es mas efectivo, si por dia o efectivo
-	public void calcularDescuentoCarrito(int diaDescuento,double porcentajeDescuentoDia, double porcentajeDescuentoEfectivo) {
+	public double calcularDescuentoCarrito(int diaDescuento,double porcentajeDescuentoDia, double porcentajeDescuentoEfectivo) {
 		double efectivo= calcularDescuentoEfectivo(porcentajeDescuentoEfectivo);
 		double dia= calcularDescuentoDia(diaDescuento,porcentajeDescuentoDia);
 		double descuentoMayor=0.0;
@@ -256,10 +256,24 @@ public class Carrito {
 			descuentoMayor=dia;
 		}
 		setDescuento(descuentoMayor);
+		return getDescuento();
+	}
+	
+	public String descuentoCarritoString(int diaDescuento,double porcentajeDescuentoDia, double porcentajeDescuentoEfectivo) {
+		String descuento = "" ;
+		double efectivo= calcularDescuentoEfectivo(porcentajeDescuentoEfectivo);
+		double dia= calcularDescuentoDia(diaDescuento,porcentajeDescuentoDia);
+		if(efectivo>dia) {
+			descuento = "Efectivo";
+		}
+		else {
+		descuento = "Del Dia";
+		}
+		return descuento;
 	}
 	
 	//Total a pagar pero ya con el descuento
 		public double totalAPagarCarrito() {
-			return calcularTotalCarrito() - descuento;
+			return (calcularTotalCarrito() - this.descuento);
 		}
 }
