@@ -158,17 +158,17 @@ public class Comercio extends Actor {
 
 		Integer aux = 0;
 		// Recorremos las matrices de forma simultanea, sumando los productos de la
-		// serie por el número en la misma posición
+		// serie por el numero en la misma posicion
 		for (int i = 0; i < 10; i++) {
 			aux += Integer.valueOf(cuitArray[i]) * serie[i];
 		}
-		// Hacemos como se especifica: 11 menos el resto de la división de la suma de
+		// Hacemos como se especifica: 11 menos el resto de la division de la suma de
 		// productos anterior por 11
 		aux = 11 - (aux % 11);
-		// Si el resultado anterior es 11 el código es 0
+		// Si el resultado anterior es 11 el codigo es 0
 		if (aux == 11) {
 			aux = 0;
-			// o si el resultado anterior es 10 el código es 9
+			// o si el resultado anterior es 10 el codigo es 9
 		} else if (aux == 10) {
 			aux = 9;
 		}
@@ -334,30 +334,30 @@ public class Comercio extends Actor {
 /******************** DIA RETIRO *******************************/
 	// TRAER DIA RETIRO POR ID
 	public DiaRetiro traerDiaRetiroId(int id) {
-		DiaRetiro diaretiro = null;
+		DiaRetiro auxDiaretiro = null;
 		int i = 0;
-		while (diaretiro == null && i < lstDiaRetiro.size()) {
-			DiaRetiro diareti = lstDiaRetiro.get(i);
-			if (diareti.getId() == id) {
-				diaretiro = diareti;
+		while (auxDiaretiro == null && i < lstDiaRetiro.size()) {
+			DiaRetiro diaRetiro = lstDiaRetiro.get(i);
+			if (diaRetiro.getId() == id) {
+				auxDiaretiro = diaRetiro;
 			}
 			i++;
 		}
-		return diaretiro;
+		return auxDiaretiro;
 	}
 
 	// TRAER DIA RETIRO POR DIA SEMANA
 	public DiaRetiro traerDiaRetiro(int diaSemana) {
-		DiaRetiro diaretiro = null;
+		DiaRetiro auxDiaretiro = null;
 		int i = 0;
-		while (diaretiro == null && i < lstDiaRetiro.size()) {
-			DiaRetiro diareti = lstDiaRetiro.get(i);
-			if (diareti.getDiaSemana() == diaSemana) {
-				diaretiro = diareti;
+		while (auxDiaretiro == null && i < lstDiaRetiro.size()) {
+			DiaRetiro diaRetiro = lstDiaRetiro.get(i);
+			if (diaRetiro.getDiaSemana() == diaSemana) {
+				auxDiaretiro = diaRetiro;
 			}
 			i++;
 		}
-		return diaretiro;
+		return auxDiaretiro;
 	}
 
 	// AGREGAR DIA RETIRO
@@ -376,13 +376,13 @@ public class Comercio extends Actor {
 	public LocalTime traerHoraRetiro(LocalDate fecha) throws Exception {
 		int indiceLista = buscarIndiceDiaRetiro(fecha);
 		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
-		boolean turnoLibre = false;
-		while (!turnoLibre) {
-			if (!buscarOcupado(hora))
-				turnoLibre = true; // si esta libre salimos del bucle
-			else
-				hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());// si esta ocupado sumamos el																					 //intervalo del diaRetiro
+		while(buscarOcupado(fecha,hora)==true) {	
+				hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());
 		}
+		if(hora==lstDiaRetiro.get(indiceLista).getHoraHasta()){
+			throw new Exception("El horario excede la hora de retiro ");
+		}
+				
 		return hora;
 	}
 	
@@ -390,12 +390,11 @@ public class Comercio extends Actor {
 		List<Turno> agenda = new ArrayList<Turno>();
 		int indiceLista = buscarIndiceDiaRetiro(fecha);
 		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
-
 		while (hora.isBefore(lstDiaRetiro.get(indiceLista).getHoraHasta())) {
-		agenda.add(new Turno(fecha, hora, buscarOcupado(hora))); 
+			agenda.add(new Turno(fecha, hora,buscarOcupado(fecha,hora))); 
 			// agrego a la lista agenda
-		hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());
-			}
+			hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());
+		}
 	return agenda;
 	}
 	private int buscarIndiceDiaRetiro(LocalDate fecha) throws Exception {
@@ -420,12 +419,13 @@ public class Comercio extends Actor {
 		LocalTime hora = lstDiaRetiro.get(index).getHoraDesde();		
 		//Mientras la hora sea antes
 		while (hora.isBefore(lstDiaRetiro.get(index).getHoraHasta())) {
-			if (!buscarOcupado(hora)) {
+			if (!buscarOcupado(fecha,hora)) {
 				//Agregar Turno Vacio
 				agenda.add(new Turno(fecha, hora, false));
 			}
 			//Buscar que no este ocupado el turno	
 			hora = hora.plusMinutes(lstDiaRetiro.get(index).getIntervalo());
+			
 		}
 		return agenda;
 	}
@@ -436,8 +436,8 @@ public class Comercio extends Actor {
 		LocalTime hora = lstDiaRetiro.get(indiceLista).getHoraDesde();
 
 		while (hora.isBefore(lstDiaRetiro.get(indiceLista).getHoraHasta())) {// mientras hora sea antes de horaHasta
-			if (buscarOcupado(hora)) {// si el turno SI esta ocupado
-				agenda.add(new Turno(fecha, hora, true));// creo un turno disponible y lo agrego a la agenda
+			if (buscarOcupado(fecha,hora)) {// si el turno SI esta ocupado
+				agenda.add(new Turno(fecha, hora, true));// guardo ocupado y lo agrego a la agenda
 			}
 			hora = hora.plusMinutes(lstDiaRetiro.get(indiceLista).getIntervalo());// sumamos el intervalo
 		}
@@ -460,14 +460,14 @@ public class Comercio extends Actor {
 		return index;
 	}
 
-	private boolean buscarOcupado(LocalTime hora) {
+	private boolean buscarOcupado(LocalDate fecha,LocalTime hora) {
 		boolean ocupado = false;
 		int i = 0;
 		if (lstCarrito != null) {
 			while((i < lstCarrito.size())&&(!ocupado)) {// busquemos si el turno esta asignado a una entrega
 				Entrega entrega = lstCarrito.get(i).getEntrega();
 				if (entrega instanceof RetiroLocal) {// si la entrega es retiro local
-					if (hora == ((RetiroLocal) entrega).getHoraEntrega())
+					if (hora == (((RetiroLocal) entrega).getHoraEntrega())&&(fecha==((RetiroLocal) entrega).getFecha()))
 						ocupado = true;
 				}
 				i++;

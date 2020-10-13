@@ -21,7 +21,7 @@ public class RetiroLocal extends Entrega {
 
 	@Override
 	public String toString() {
-		return "RetiroLocal Hora Entrega: " + horaEntrega + " ";
+		return "Retiro Local- Fecha: "+fecha+"- Hora Entrega: " + horaEntrega + " ";
 	}
 	
     
