@@ -257,6 +257,7 @@ public class Carrito {
 		}
 		setDescuento(descuentoMayor);
 		return getDescuento();
+<<<<<<< HEAD
 	}
 	
 	public String descuentoCarritoString(int diaDescuento,double porcentajeDescuentoDia, double porcentajeDescuentoEfectivo) {
@@ -270,7 +271,10 @@ public class Carrito {
 		descuento = "Del Dia";
 		}
 		return descuento;
+=======
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 	}
+	
 	
 	//Total a pagar pero ya con el descuento
 		public double totalAPagarCarrito() {

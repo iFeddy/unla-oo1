@@ -2,6 +2,7 @@ package test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import modelo.Funciones;
 import modelo.RetiroLocal;
@@ -16,6 +17,16 @@ import modelo.Ubicacion;
 public class TestAplicacion {
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
+=======
+		LocalDate fecha = LocalDate.of(2020, 9, 29);// fecha dia martes utilizada en diferentes partes del test
+		LocalTime horaDesde = LocalTime.of(10, 00);
+		LocalTime horaHasta = LocalTime.of(17, 00);
+		
+		LocalDate fecha1 = LocalDate.of(2020, 9, 30);// 
+		LocalTime horaDesde1 = LocalTime.of(11, 00);
+		LocalTime horaHasta1 = LocalTime.of(17, 00);
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 		
 		try {
     
@@ -24,6 +35,7 @@ public class TestAplicacion {
     		System.out.println("                                             ALMACEN GRANATE");
             System.out.println("------------------------------------------------------------------------------------------------------------");
     		Ubicacion ubicacion = new Ubicacion(-30,-50);
+<<<<<<< HEAD
 			Contacto contacto = new Contacto("AlmacenGranate@gmail.com", "+5491122334455", ubicacion);	 
     		Comercio almacenGranate = new Comercio(1,contacto,"Almacen Granate", 20353242343L, 20, 10, 2 ,20, 15); 
     		//Comercio almacenGranate = new Comercio(1,contacto,"Almacen Granate", 20353242343L, 20, 10, 2 ,10, 20);
@@ -38,6 +50,17 @@ public class TestAplicacion {
     		almacenGranate.agregarDiaRetiro(4,horaDesde, horaHasta, 20); //4 = jueves    		
     		almacenGranate.agregarDiaRetiro(5,horaDesde, horaHasta, 20); //5 = viernes
     		almacenGranate.agregarDiaRetiro(6,horaDesde, horaHasta, 20); //6 = sabado  	
+=======
+			Contacto contacto = new Contacto("AlmacenGranate@gmail.com", "+5491122334455", ubicacion);	
+    		//Comercio almacenGranate = new Comercio(1,contacto,"Almacen Granate", 20353242343L, 20, 10, 1 ,25, 10); 
+    		Comercio almacenGranate = new Comercio(1,contacto,"Almacen Granate", 20353242343L, 20, 10, 1 ,25, 30); 
+    		   		    	    	
+    		//AGREGANDO DIAS DE RETIRO    		
+    		almacenGranate.agregarDiaRetiro(1,horaDesde, horaHasta, 20); 
+    		almacenGranate.agregarDiaRetiro(2,horaDesde, horaHasta, 20);
+    		almacenGranate.agregarDiaRetiro(3,horaDesde, horaHasta, 30);
+    		almacenGranate.agregarDiaRetiro(4,LocalTime.of(8,0), LocalTime.of(17,0), 30);
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
     		
     		// AGREGAMOS CLIENTES 
     		Ubicacion ubicacionContacto1 = new Ubicacion(-40, -60);
@@ -97,6 +120,21 @@ public class TestAplicacion {
 			almacenGranate.addLstCarrito(carrito3);
 						
 			// creo la entrega por retiroLocal con la primer hora disponible de la fecha
+<<<<<<< HEAD
+=======
+			
+			Entrega entregaLocal = new RetiroLocal(1, fecha1, true, almacenGranate.traerHoraRetiro(fecha1));
+			Entrega entregaLocal1 = new RetiroLocal(2, fecha1, true, almacenGranate.traerHoraRetiro(fecha1));
+					
+			// creo la entrega por Envio
+			Entrega entregaEnvio = new Envio(2, fecha1, false, horaDesde, horaHasta, almacenGranate.getContacto().getUbicacion(),
+			almacenGranate.getCostoFijo(), almacenGranate.getCostoPorKm(), cliente2.getContacto().getUbicacion());
+
+			// agrego la entrega a los carritos
+			carrito1.setEntrega(entregaLocal);
+			carrito2.setEntrega(entregaEnvio);
+			carrito3.setEntrega(entregaLocal1);		
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 			
 			Entrega entregaLocal = new RetiroLocal(1, fecha, true, almacenGranate.traerHoraRetiro(fecha));
 					
@@ -110,6 +148,20 @@ public class TestAplicacion {
 			carrito3.setEntrega(entregaLocal);		
 						
 			// AGREGAMOS LOS TRES CARRITOS
+<<<<<<< HEAD
+=======
+			
+			almacenGranate.agregarCarrito(LocalDate.now(),LocalTime.of(12, 40), false, 23D, cliente1, carrito1.mostrarItem(carrito1));
+			almacenGranate.agregarCarrito(LocalDate.now(),LocalTime.of(8, 50), false, 23D, cliente2, carrito2.mostrarItem(carrito2));
+			almacenGranate.agregarCarrito(LocalDate.now(),LocalTime.of(9, 30), false, 23D, cliente3, carrito3.mostrarItem(carrito3));
+			
+			/* ESTARIA FALTANDO EL DESCUENTO EN EFECTIVO O DEL DIA , APLICA EL MAYOR . 
+			 * Calculo de descuentos si es que corresponde. calcularDescuentoDia y
+			 * calcularDescuentoEfectivo estan implementados en calcularDescuentoCarrito
+			 
+			carrito2.calcularDescuentoCarrito(carrito2.getFecha().getDayOfWeek().getValue(),
+			almacenGranate.getPorcentajeDescuentoDia(), almacenGranate.getPorcentajeDescuentoEfectivo());*/
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 			
 			almacenGranate.agregarCarrito(LocalDate.of(2020, 10, 13),LocalTime.of(12, 40), false, 23D, cliente1, carrito1.mostrarItem(carrito1));
 			almacenGranate.agregarCarrito(LocalDate.of(2020, 10, 14),LocalTime.of(8, 50), false, 23D, cliente2, carrito2.mostrarItem(carrito2));
@@ -118,6 +170,7 @@ public class TestAplicacion {
     		System.out.println("");
     		System.out.println("CARRITOS: ");
     		System.out.println("------------------------------------------------------------------------------------------------------------");    		
+<<<<<<< HEAD
 			System.out.println(almacenGranate.traerCarrito(1));		
 			carrito1 = almacenGranate.traerCarrito(1);
 			//Calculo los totales e imprimo
@@ -125,6 +178,13 @@ public class TestAplicacion {
 			System.out.println("\nSubTotal Carrito : $" +  carrito1.calcularTotalCarrito());
 			System.out.print("Descuento a Aplicar : ");
 			System.out.println(carrito1.descuentoCarritoString(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(),almacenGranate.getPorcentajeDescuentoEfectivo()));
+=======
+			System.out.println(almacenGranate.traerCarrito(1));
+			carrito1=almacenGranate.traerCarrito(1);
+			//Calculo los totales e imprimo
+			System.out.println("------------------------------------------------------------------------------------------------------------");
+			System.out.println("\nSubTotal Carrito : $" + carrito1.calcularTotalCarrito());
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 			System.out.print("Descuento : $");
 			System.out.println(carrito1.calcularDescuentoCarrito(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(), almacenGranate.getPorcentajeDescuentoEfectivo()));
 			System.out.println("Total con Descuentos : $" +  carrito1.totalAPagarCarrito());
@@ -132,12 +192,20 @@ public class TestAplicacion {
 			System.out.println("------------------------------------------------------------------------------------------------------------");
 			System.out.println("------------------------------------------------------------------------------------------------------------"); 		
 			System.out.println(almacenGranate.traerCarrito(2));
+<<<<<<< HEAD
 			carrito2 = almacenGranate.traerCarrito(2);
 			//Calculo los totales e imprimo
 			System.out.println("\nSubTotal Carrito : $" + carrito2.calcularTotalCarrito());
 			System.out.print("Descuento a Aplicar : ");
 			System.out.println(carrito2.descuentoCarritoString(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(),almacenGranate.getPorcentajeDescuentoEfectivo()));
 			System.out.print("Descuento : $");
+=======
+			carrito2=almacenGranate.traerCarrito(2);
+			//Calculo los totales e imprimo
+			//System.out.println(almacenGranate.getLstCarrito().get(0).getLstItemCarrito());
+			System.out.println("\nSubTotal Carrito : $" + carrito2.calcularTotalCarrito());
+			System.out.print("Descuento = $");
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 			System.out.println(carrito2.calcularDescuentoCarrito(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(), almacenGranate.getPorcentajeDescuentoEfectivo()));
 			System.out.println("Total con Descuentos : $" + carrito2.totalAPagarCarrito());
 			System.out.println("Entrega : " + almacenGranate.getLstCarrito().get(1).getEntrega());
@@ -145,12 +213,20 @@ public class TestAplicacion {
 			System.out.println("------------------------------------------------------------------------------------------------------------");
 			System.out.println("------------------------------------------------------------------------------------------------------------");  		
 			System.out.println(almacenGranate.traerCarrito(3));
+<<<<<<< HEAD
 			carrito3 = almacenGranate.traerCarrito(3);
 			//Calculo los totales e imprimo
 			System.out.println("\nSubTotal Carrito : $" + almacenGranate.traerCarrito(3).calcularTotalCarrito());
 			System.out.print("Descuento a Aplicar : ");
 			System.out.println(carrito3.descuentoCarritoString(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(),almacenGranate.getPorcentajeDescuentoEfectivo()));
 			System.out.print("Descuento : $");
+=======
+			carrito3=almacenGranate.traerCarrito(3);
+			//Calculo los totales e imprimo
+			//System.out.println(almacenGranate.getLstCarrito().get(0).getLstItemCarrito());
+			System.out.println("\nSubTotal Carrito : $" + almacenGranate.getLstCarrito().get(2).calcularTotalCarrito());			
+			System.out.print("Descuento = $");
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
 			System.out.println(carrito3.calcularDescuentoCarrito(almacenGranate.getDiasDescuento(),almacenGranate.getPorcentajeDescuentoDia(), almacenGranate.getPorcentajeDescuentoEfectivo()));
 			System.out.println("Total con Descuentos : $" + carrito3.totalAPagarCarrito());
 			System.out.println("Entrega : " + almacenGranate.getLstCarrito().get(2).getEntrega());
@@ -158,12 +234,26 @@ public class TestAplicacion {
 			System.out.println("------------------------------------------------------------------------------------------------------------");
 			
 			// imprimo la agenda
+			System.out.println("Agenda de la fecha: "+ almacenGranate.generarAgenda(fecha1));
+			System.out.println("\n");// saltos de linea
+			System.out.println("Turnos ocupados: "+ almacenGranate.traerTurnosOcupados(fecha1));
+			System.out.println("\n");// saltos de linea
+			System.out.println("Turnos disponibles: "+ almacenGranate.generarTurnosLibres(fecha1));
+			System.out.println("\n");// saltos de linea
 			System.out.println("Agenda de la fecha: "+ almacenGranate.generarAgenda(fecha));
 			System.out.println("\n");// saltos de linea
 			System.out.println("Turnos ocupados: "+ almacenGranate.traerTurnosOcupados(fecha));
 			System.out.println("\n");// saltos de linea
+<<<<<<< HEAD
 			System.out.println("Turnos disponibles: " + Funciones.fechaCadena(fecha)+ almacenGranate.generarTurnosLibres(fecha));
 			
+=======
+			System.out.println("Turnos disponibles: "+ almacenGranate.generarTurnosLibres(fecha));
+			
+			// TURNOS
+			//System.out.println("[Turnos] Miercoles 7-10-2020 \n" + almacenGranate.generarTurnosLibres(LocalDate.of(2020, 10, 7)));
+
+>>>>>>> 728a6b0c328cbd11772da8b7e8471d10d5c1ad43
     		 // V. 4.1
 			
 		} catch (Exception e) {
