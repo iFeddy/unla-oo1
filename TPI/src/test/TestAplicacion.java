@@ -47,12 +47,11 @@ public class TestAplicacion {
     		Contacto contactoPerez = new Contacto("Perez@gmail.com", "1132547698", ubicacionContacto2);
 
     		Ubicacion ubicacionContacto3 = new Ubicacion(-40, -58.368515);
-    		Contacto contactoPiñeyro = new Contacto("Pineyro@gmail.com", "1111223344", ubicacionContacto3);
+    		Contacto contactoPineyro = new Contacto("Pineyro@gmail.com", "1111223344", ubicacionContacto3);
     		
     		Cliente cliente1 = new Cliente(2, contactoSejas, "Sejas", "Diego", 35007121L, 'H');
 			Cliente cliente2 = new Cliente(3, contactoPerez, "Perez", "Federico", 40500720L, 'H');
-			Cliente cliente3 = new Cliente(4, contactoPiñeyro, "Dario", "Piñeyro", 41926641L, 'H');
-			
+			Cliente cliente3 = new Cliente(4, contactoPineyro, "Dario", "Pineyro", 41926641L, 'H');
 			
     		// AGREGANDO ARTICULOS AL COMERCIO 
     		System.out.println(almacenGranate);    		
@@ -99,15 +98,15 @@ public class TestAplicacion {
 			// creo la entrega por retiroLocal con la primer hora disponible de la fecha
 			
 			Entrega entregaLocal = new RetiroLocal(1, fecha, true, almacenGranate.traerHoraRetiro(fecha));
-					
+			carrito1.setEntrega(entregaLocal);
+			
 			// creo la entrega por Envio
 			Entrega entregaEnvio = new Envio(2, fecha, false, horaDesde, horaHasta, almacenGranate.getContacto().getUbicacion(),
 			almacenGranate.getCostoFijo(), almacenGranate.getCostoPorKm(), cliente2.getContacto().getUbicacion());
-
-			// agrego la entrega a los carritos
-			carrito1.setEntrega(entregaLocal);
 			carrito2.setEntrega(entregaEnvio);
-			carrito3.setEntrega(entregaLocal);		
+
+			Entrega entregaLocal2 = new RetiroLocal(2, fecha, true, almacenGranate.traerHoraRetiro(fecha));				
+			carrito3.setEntrega(entregaLocal2);		
 						
 			// AGREGAMOS LOS TRES CARRITOS
 			
@@ -164,7 +163,7 @@ public class TestAplicacion {
 			System.out.println("\n");// saltos de linea
 			System.out.println("Turnos disponibles: " + Funciones.fechaCadena(fecha)+ almacenGranate.generarTurnosLibres(fecha));
 			
-    		 // V. 4.1
+			 // V. 4.1
 			
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
