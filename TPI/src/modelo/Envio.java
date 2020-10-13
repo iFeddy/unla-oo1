@@ -54,7 +54,8 @@ public class Envio extends Entrega {
 
 	@Override
 	public String toString() {
-		return "Envio- Fecha: "+fecha+ "- Hora Desde: " + horaDesde+ "- Hora Hasta: " + horaHasta + " - Costo: $" + costo + " - Ubicacion: " + ubicacion + " ";
+		return "Envio Hora Hasta: " + horaHasta + " - Hora Desde: " + horaDesde
+				+ " - Costo: " + costo + " - Ubicacion: " + ubicacion + " ";
 	}
 
 	public double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {

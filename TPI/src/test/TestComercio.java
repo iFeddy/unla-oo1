@@ -49,7 +49,7 @@ public class TestComercio {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
     	
-		// Ultima Version 3.0  
+		// Ultima Version 4.0  
     
     }
 
