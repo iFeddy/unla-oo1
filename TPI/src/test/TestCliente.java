@@ -6,17 +6,17 @@ import modelo.Ubicacion;
 
 public class TestCliente {
 	public static void main(String[] args) throws Exception {
-		
-		/*UBICACION */
-		System.out.println("ESCENARIO 1: TRAYENDO UBICACION VALIDA"); 
+
+		/* UBICACION */
+		System.out.println("ESCENARIO 1: TRAYENDO UBICACION VALIDA");
 		try {
 			System.out.println("UBICACION: ");
-			Ubicacion u = new Ubicacion(30,20);
-			System.out.println("Ubicacion ingresada : " + u.traerUbicacion());			
+			Ubicacion u = new Ubicacion(30, 20);
+			System.out.println("Ubicacion ingresada : " + u.traerUbicacion());
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
-		}		
-		System.out.println("\nESCENARIO 2: TRAYENDO UBICACION FORZANDO EXCEPCIÓN LONGITUD Y LATITUD CORRECTOS"); 		
+		}
+		System.out.println("\nESCENARIO 2: TRAYENDO UBICACION FORZANDO EXCEPCIÃ³N LONGITUD Y LATITUD CORRECTOS");
 		try {
 			System.out.println("");
 			System.out.println("UBICACION , VALIDANDO LONGITUD Y LATITUD : ");
@@ -26,54 +26,54 @@ public class TestCliente {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
-		/*CONTACTO*/
+
+		/* CONTACTO */
 		System.out.println("\nESCENARIO 1: TRAYENDO CONTACTO");
 		try {
 			System.out.println("");
 			System.out.println("CONTACTO : ");
-			Ubicacion ubicacion = new Ubicacion(30,20);
+			Ubicacion ubicacion = new Ubicacion(30, 20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			System.out.println(contacto);
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
-		/*CONTACTO*/
-		 System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DIRECCIÓN DE EMAIL");
+
+		/* CONTACTO */
+		System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DIRECCIï¿½N DE EMAIL");
 		try {
 			System.out.println("");
 			System.out.println("CONTACTO , VALIDANDO EMAIL : ");
-			Ubicacion ubicacion = new Ubicacion(30,20);
+			Ubicacion ubicacion = new Ubicacion(30, 20);
 			Contacto contacto = new Contacto("email@gmail", "+5491122334455", ubicacion);
 			System.out.println(contacto);
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
-		/*CLIENTE*/
+
+		/* CLIENTE */
 		System.out.println("\nESCENARIO 1: TRAYENDO CLIENTE");
-		try {			
+		try {
 			System.out.println("");
 			System.out.println("CLIENTE : ");
-			Ubicacion ubicacion = new Ubicacion(30,20);
+			Ubicacion ubicacion = new Ubicacion(30, 20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 30123456, 'M');
-			System.out.println(cliente);			
+			System.out.println(cliente);
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		/*CLIENTE*/
-		  System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DNI");
+		/* CLIENTE */
+		System.out.println("\nESCENARIO 2: TRAYENDO CONTACTO VALIDANDO DNI");
 		try {
 			System.out.println("");
 			System.out.println("CLIENTE , VALIDANDO DNI : ");
-			Ubicacion ubicacion = new Ubicacion(30,20);
+			Ubicacion ubicacion = new Ubicacion(30, 20);
 			Contacto contacto = new Contacto("email@gmail.com", "+5491122334455", ubicacion);
 			Cliente cliente = new Cliente(0, contacto, "Perez", "Federico", 301234567, 'M');
-			System.out.println(cliente);			
+			System.out.println(cliente);
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
-		}					
+		}
 	}
 }
