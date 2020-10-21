@@ -16,7 +16,7 @@ public class Test {
                 System.out.println("Agregado Correctamente");
             }              
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }      
 
         System.out.println("1.2)");
@@ -26,7 +26,7 @@ public class Test {
                 System.out.println("Agregado Correctamente");
             }     
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }      
 
         System.out.println("1.3)");
@@ -36,7 +36,7 @@ public class Test {
                 System.out.println("Agregado Correctamente");
             }     
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }   
 
         System.out.println("1.4)");
@@ -46,7 +46,7 @@ public class Test {
                 System.out.println("Agregado Correctamente");
             }     
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }   
 
         System.out.println("2.1)");
@@ -75,7 +75,7 @@ public class Test {
                 agregados++;
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         System.out.println("Agregados " + agregados + " Servicios Nuevos");
         System.out.println("Lista: " + sistema);
