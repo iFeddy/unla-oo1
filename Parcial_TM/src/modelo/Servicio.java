@@ -3,9 +3,9 @@ package modelo;
 import java.time.LocalDate;
 
 public abstract class Servicio {
-    private String codServicio;
-    private double porcentajeDescuento;
-    private boolean enPromocion;    
+    protected String codServicio;
+    protected double porcentajeDescuento;
+    protected boolean enPromocion;    
 
     public Servicio(){
 
