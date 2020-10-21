@@ -33,9 +33,10 @@ public class Sistema {
         List<Servicio> newServicios = new ArrayList<Servicio>();
         while(i < this.lstServicio.size()){
             Servicio bServicio = this.lstServicio.get(i);
-            if(bServicio.getEnPromocion()){
+            if(bServicio.getEnPromocion() == enPromocion){
                 newServicios.add(bServicio);
             }
+
             i++;
         }
         return newServicios;
@@ -46,15 +47,15 @@ public class Sistema {
         List<Servicio> newServicios = new ArrayList<Servicio>();
         while(i < this.lstServicio.size()){
             Servicio bServicio = this.lstServicio.get(i);
-            if (bServicio instanceof Gastronomia) {
+            if (bServicio instanceof Gastronomia) {                
                 Gastronomia gastronomia = (Gastronomia) bServicio;
-                if(gastronomia.getEnPromocion() && dia.getDayOfWeek().getValue() == gastronomia.getDiaSemDesc()){
+                if(gastronomia.getEnPromocion() == enPromocion & dia.getDayOfWeek().getValue() == gastronomia.getDiaSemDesc()){
                     newServicios.add(bServicio);
                 }
             }
             i++;
         }
-        return lstServicio;
+        return newServicios;
     }
 
     public boolean agregarGastronomia(String codServicio, double porcentajeDescuento, boolean enPromocion, String gastronomia,  double precio, int diaSemDesc)
